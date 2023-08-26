@@ -1,9 +1,10 @@
 import React from 'react'
+import FeaturedProducts from '../components/home/FeaturedProducts'
 
 function Homepage() {
   return (
     <>
-    <h1>This is our homepage</h1>
+    <FeaturedProducts />
     </>
   )
 }
