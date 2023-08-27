@@ -4,7 +4,7 @@ import { Container, Row, Col, Card } from 'react-bootstrap';
 function Collection() {
     return (
         <>
-            <Container>
+            <Container className="text-center" fluid={true}>
                 <div className='section-title text-center mb-55'>
                     <h2>PRODUCT COLLECTION</h2>
                     <p>Some of our Exclusive Collections.</p>
