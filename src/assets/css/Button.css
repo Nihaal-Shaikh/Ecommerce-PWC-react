@@ -2,10 +2,12 @@
     border: none !important;
     border-radius: 0px !important;
 }
+
 .btn:focus {
     box-shadow: none;
 }
-.site-btn{
+
+.site-btn {
     font-weight: 300;
     padding: 5px;
     font-family: 'Roboto Condensed', sans-serif;
@@ -13,7 +15,7 @@
     background: #051b35 !important;
 }
 
-.site-btn:active{
+.site-btn:active {
     background: #051b35 !important;
 }
 
@@ -69,8 +71,10 @@
     top: 50%;
     border-radius: 50%;
     padding: 50%;
-    width: 32px; /* Safari */
-    height: 32px; /* Safari */
+    width: 32px;
+    /* Safari */
+    height: 32px;
+    /* Safari */
     background-color: rgb(var(--pure-material-onprimary-rgb, 255, 255, 255));
     opacity: 0;
     transform: translate(-50%, -50%) scale(1);
