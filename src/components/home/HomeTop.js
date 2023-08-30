@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import MegaMenu from './MegaMenu';
-import Slider from './Slider';
+import HomeSlider from './HomeSlider';
 
 function HomeTop() {
     return (
@@ -12,7 +12,7 @@ function HomeTop() {
                         <MegaMenu />
                     </Col>
                     <Col lg={9} md={9} sm={12}>
-                        <Slider />
+                        <HomeSlider />
                     </Col>
                 </Row>
             </Container>
