@@ -6,17 +6,17 @@ function MegaMenu() {
     const [activeIndex, setActiveIndex] = useState(null);
 
     const toggleAccordion = (index) => {
-      setActiveIndex(prevIndex => (prevIndex === index ? null : index));
+        setActiveIndex(prevIndex => (prevIndex === index ? null : index));
     };
 
     const getPanelStyle = (index) => {
         return {
-          maxHeight: activeIndex === index ? '1000px' : '0px', // You can adjust the max height as needed
-          transition: 'max-height 0.3s ease-in-out',
-          overflow: 'hidden',
+            maxHeight: activeIndex === index ? '1000px' : '0px', // You can adjust the max height as needed
+            transition: 'max-height 0.3s ease-in-out',
+            overflow: 'hidden',
         };
-      };
-    
+    };
+
 
     return (
         <div className='accordionMenuDiv'>
