@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Navbar, Container, Row, Col, Button } from "react-bootstrap";
 import Logo from "../../assets/images/easyshop.png"
 import { Link } from "react-router-dom"
+import MegaMenuMobile from '../home/MegaMenuMobile';
 
 function NavMenuMobile() {
 
@@ -31,10 +32,7 @@ function NavMenuMobile() {
                         </Row>
                     </Container>
                     <div className={sideNavState}>
-                        <hr className='w-80' />
-                        <div className='list-group'>
-                            <a href="" className='list-group-item nav-font nav-itemmenu list-group-item-action'><i className='fa mr-2 fa-home'>Home</i></a>
-                        </div>
+                            <MegaMenuMobile />
                     </div>
                     <div onClick={sideNavOpenClose} className={contentOverState}>
 
