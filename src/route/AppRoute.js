@@ -6,6 +6,9 @@ import ContactPage from '../pages/ContactPage'
 import PurchasePage from '../pages/PurchasePage'
 import PrivacyPage from '../pages/PrivacyPage'
 import RefundPage from '../pages/RefundPage'
+import ProductDetailPage from '../pages/ProductDetailPage'
+import NotificationPage from '../pages/NotificationPage'
+import FavouritePage from '../pages/FavouritePage'
 
 function AppRoute() {
     return (
@@ -17,6 +20,9 @@ function AppRoute() {
                 <Route path="/purchase" element={<PurchasePage />} />
                 <Route path="/privacy" element={<PrivacyPage />} />
                 <Route path="/refund" element={<RefundPage />} />
+                <Route path="/productDetail" element={<ProductDetailPage />} />
+                <Route path="/notification" element={<NotificationPage />} />
+                <Route path="/favourite" element={<FavouritePage />} />
             </Routes>
         </>
     )

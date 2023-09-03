@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Link } from "react-router-dom";
 
 function FeaturedProducts() {
     return (
@@ -11,6 +12,7 @@ function FeaturedProducts() {
                 </div>
                 <Row>
                     <Col className='p-1' key={1} xl={2} lg={2} sm={4} xs={6}>
+                        <Link to="/productDetail">
                         <Card className='image-box card'>
                             <img className='center' src="https://rukminim2.flixcart.com/image/416/416/xif0q/mobile/2/n/m/-original-imagna3rjqn8vqxb.jpeg?q=70" alt="" />
                             <Card.Body>
@@ -18,6 +20,7 @@ function FeaturedProducts() {
                                 <p className='product-price-on-card'>Price: $150</p>
                             </Card.Body>
                         </Card>
+                        </Link>
                     </Col>
                     <Col className='p-1' key={1} xl={2} lg={2} sm={4} xs={6}>
                         <Card className='image-box card'>

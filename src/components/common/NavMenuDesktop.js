@@ -3,6 +3,7 @@ import { Navbar, Container, Row, Col, Button } from "react-bootstrap";
 import Logo from "../../assets/images/easyshop.png";
 import { Link } from "react-router-dom";
 import MegaMenuAll from '../home/MegaMenuAll';
+import Bars from "../../assets/images/bars.png"
 
 function NavMenuDesktop() {
 
@@ -26,7 +27,7 @@ function NavMenuDesktop() {
                     <Container fluid={'true'} className='fixed-top shadow-sm p-2 mb-0 bg-white'>
                         <Row>
                             <Col lg={4} md={4} sm={12} xs={12}>
-                                <Button className='btn' onClick={sideNavOpenClose}><i className='fa fa-bars'></i></Button>
+                                <img src={Bars} onClick={sideNavOpenClose} className='bar-img' alt="" />
                                 <Link to="/">{' '}<img className='nav-logo' src={Logo} alt="" />{' '}</Link>
                             </Col>
                             <Col className='p-1 mt-1' lg={4} md={4} sm={12} xs={12}>
@@ -38,10 +39,10 @@ function NavMenuDesktop() {
                                 </div>
                             </Col>
                             <Col className='p-1 mt-1' lg={4} md={4} sm={12} xs={12}>
-                                <Link to="/" className='btn'>
+                                <Link to="/favourite" className='btn'>
                                     <i className='fa h4 fa-heart'></i><sup><span className='badge text-white bg-danger'>3</span></sup>
                                 </Link>
-                                <Link to="/" className='btn'>
+                                <Link to="/notification" className='btn'>
                                     <i className='fa h4 fa-bell'></i><sup><span className='badge text-white bg-danger'>5</span></sup>
                                 </Link>
                                 <a className='btn' href=""><i className='fa h4 fa-mobile-alt'></i></a>
