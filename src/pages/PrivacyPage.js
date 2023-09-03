@@ -3,9 +3,9 @@ import NavMenuDesktop from '../components/common/NavMenuDesktop';
 import NavMenuMobile from '../components/common/NavMenuMobile';
 import FooterDesktop from '../components/common/FooterDesktop';
 import FooterMobile from '../components/common/FooterMobile';
-import Contact from '../components/common/Contact';
+import Privacy from '../components/others/Privacy';
 
-function ContactPage() {
+function PrivacyPage() {
 
     useEffect(() => {
         window.scroll(0, 0);
@@ -19,7 +19,7 @@ function ContactPage() {
         <div className='Mobile'>
             <NavMenuMobile />
         </div>
-        <Contact />
+        <Privacy />
         <div className='Desktop'>
             <FooterDesktop />
         </div>
@@ -27,8 +27,7 @@ function ContactPage() {
             <FooterMobile />
         </div>
     </>
-
   )
 }
 
-export default ContactPage
+export default PrivacyPage
