@@ -10,6 +10,8 @@
 @import "MegaMenuMobile.css";
 @import "Responsive.css";
 @import "MegaMenuAll.css";
+@import "Onboard.css";
+@import "Common.css";
 
 body {
 	background-color: #FFFF;
