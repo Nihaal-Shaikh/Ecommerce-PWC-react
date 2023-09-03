@@ -46,6 +46,8 @@ function FooterDesktop() {
                     </h5>
                     <a href=""><img src={Google} alt="" /></a><br />
                     <a href=""><img className='mt-2' src={Apple} alt="" /></a><br />
+                    Change your language
+                    <div id='google_translate_element'></div>
                 </Col>
             </Row>
         </Container>
