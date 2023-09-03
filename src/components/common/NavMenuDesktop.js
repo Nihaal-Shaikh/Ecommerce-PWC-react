@@ -45,7 +45,7 @@ function NavMenuDesktop() {
                                     <i className='fa h4 fa-bell'></i><sup><span className='badge text-white bg-danger'>5</span></sup>
                                 </Link>
                                 <a className='btn' href=""><i className='fa h4 fa-mobile-alt'></i></a>
-                                <Link to="/" className='h4 btn'>Login</Link>
+                                <Link to="/login" className='h4 btn'>Login</Link>
                                 <Button className='cart-btn'><i className='fa fa-shopping-cart'></i>3 items</Button>
                             </Col>
                         </Row>
