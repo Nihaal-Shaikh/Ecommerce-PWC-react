@@ -1,5 +1,8 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
+import { Link } from "react-router-dom";
+import Apple from "../../assets/images/apple.png";
+import Google from "../../assets/images/google.png";
 
 function FooterDesktop() {
     return (
@@ -25,18 +28,33 @@ function FooterDesktop() {
                     <h5 className='footer-menu-title'>
                         The Company
                     </h5>
+                    <Link to='/' className='footer-link'> About Us</Link><br />
+                    <Link to='/' className='footer-link'> Company Profile</Link><br />
+                    <Link to='/' className='footer-link'> Contact Us</Link><br />
                 </Col>
                 <Col className='p-2' lg={3} md={3} sm={6} xs={12}>
                     <h5 className='footer-menu-title'>
                         More Info
                     </h5>
+                    <Link to='/' className='footer-link'>How to Purchase</Link><br />
+                    <Link to='/' className='footer-link'>Privacy Policy</Link><br />
+                    <Link to='/' className='footer-link'>Refund Policy</Link><br />
                 </Col>
                 <Col className='p-2' lg={3} md={3} sm={6} xs={12}>
                     <h5 className='footer-menu-title'>
                         Download App
                     </h5>
+                    <a href=""><img src={Google} alt="" /></a><br />
+                    <a href=""><img className='mt-2' src={Apple} alt="" /></a><br />
                 </Col>
             </Row>
+        </Container>
+        <Container fluid={true} className='text-center m-0 pt-3 pb-1 bg-dark'>
+            <Container>
+                <Row>
+                    <h6 className='text-white'>® Copyright 2023 by Easy Shop, All Rights Reserved</h6>
+                </Row>
+            </Container>
         </Container>
         </div>
         </>
