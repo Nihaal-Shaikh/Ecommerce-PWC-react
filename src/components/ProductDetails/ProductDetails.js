@@ -9,7 +9,7 @@ import Product4 from "../../assets/images/product4.png";
 function ProductDetails() {
     return (
         <>
-            <Container className="BetweenTwoSection">
+            <Container className="BetweenTwoSection" fluid={true}>
                 <Row className="p-2">
                     <Col className="shadow-sm bg-white pb-3 mt-4" md={12} lg={12} sm={12} xs={12}>
                         <Row>

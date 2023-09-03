@@ -4,6 +4,7 @@ import NavMenuMobile from '../components/common/NavMenuMobile';
 import FooterDesktop from '../components/common/FooterDesktop';
 import FooterMobile from '../components/common/FooterMobile';
 import ProductDetails from '../components/ProductDetails/ProductDetails';
+import SuggestedProducts from '../components/ProductDetails/SuggestedProducts';
 
 function ProductDetailPage() {
 
@@ -20,6 +21,7 @@ function ProductDetailPage() {
             <NavMenuMobile />
         </div>
         <ProductDetails />
+        <SuggestedProducts />
         <div className='Desktop'>
             <FooterDesktop />
         </div>
