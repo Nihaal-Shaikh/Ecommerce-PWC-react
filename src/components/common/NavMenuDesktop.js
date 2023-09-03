@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Navbar, Container, Row, Col, Button } from "react-bootstrap";
-import Logo from "../../assets/images/easyshop.png"
-import { Link } from "react-router-dom"
+import Logo from "../../assets/images/easyshop.png";
+import { Link } from "react-router-dom";
 import MegaMenuAll from '../home/MegaMenuAll';
 
 function NavMenuDesktop() {
