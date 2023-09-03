@@ -7,6 +7,7 @@ import HomeTop from '../components/home/HomeTop'
 import NavMenuDesktop from '../components/common/NavMenuDesktop'
 import NavMenuMobile from '../components/common/NavMenuMobile'
 import HomeTopMobile from '../components/home/HomeTopMobile'
+import FooterDesktop from '../components/common/FooterDesktop'
 
 function Homepage() {
 	return (
@@ -23,6 +24,7 @@ function Homepage() {
 			<NewArrivals />
 			<Categories />
 			<Collection />
+			<FooterDesktop />
 		</>
 	)
 }
