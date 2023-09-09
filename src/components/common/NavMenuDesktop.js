@@ -47,7 +47,7 @@ function NavMenuDesktop() {
                                 </Link>
                                 <a className='btn' href=""><i className='fa h4 fa-mobile-alt'></i></a>
                                 <Link to="/login" className='h4 btn'>Login</Link>
-                                <Button className='cart-btn'><i className='fa fa-shopping-cart'></i>3 items</Button>
+                                <Link to="/cart" className="cart-btn"><i className="fa fa-shopping-cart"></i> 3 Items </Link>
                             </Col>
                         </Row>
                     </Container>
