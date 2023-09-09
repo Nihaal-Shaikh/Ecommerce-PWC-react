@@ -13,6 +13,7 @@
 @import "Onboard.css";
 @import "Common.css";
 @import "ProductDetail.css";
+@import "CartList.css";
 
 body {
 	background-color: #FFFF;
