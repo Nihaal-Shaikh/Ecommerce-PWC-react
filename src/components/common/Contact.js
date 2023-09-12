@@ -9,6 +9,7 @@ function Contact() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
+    const [sendBtn, setSendBtn] = useState('Send');
 
     const onFormSubmit = (event) => {
 
@@ -26,8 +27,9 @@ function Contact() {
         } else if (!Validation().NameRegx.test(name)) {
             alert("Invalid Name");
             return;
-        }        
+        }
 
+        setSendBtn('Sending...');
 		const formData = new FormData();
 
         formData.append('name', name);
@@ -41,13 +43,16 @@ function Contact() {
                 setEmail('');
                 setMessage('');
                 alert('Message sent successfully');
+                setSendBtn('Send');
             } else {
                 alert('Error');
+                setSendBtn('Send');
             }
           })
           .catch(function (error) {
             alert(error);
-          });
+            setSendBtn('Send');
+        });
     }
 
     return (
@@ -63,7 +68,7 @@ function Contact() {
                                     <input className='form-control m-2' type="text" placeholder='Enter Your Name' value={name} onChange={(e) => {setName(e.target.value)}} />
                                     <input className='form-control m-2' type="email" placeholder='Enter Email Id' value={email} onChange={(e) => {setEmail(e.target.value);}} />
                                     <Form.Control className='form-control m-2' as="textarea" rows={3} placeholder='Message' value={message} onChange={(e) => {setMessage(e.target.value);}} />
-                                    <Button type='submit' className='btn btn-block m-2 site-btn-login'>Send</Button>
+                                    <Button type='submit' className='btn btn-block m-2 site-btn-login'>{sendBtn}</Button>
                                 </Form>
                             </Col>
                             <Col className='p-0 Desktop m-0' md={6} lg={6} sm={6} xs={6}> <br /><br />
