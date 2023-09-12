@@ -28,7 +28,7 @@ function FooterDesktop() {
                     <h5 className='footer-menu-title'>
                         The Company
                     </h5>
-                    <Link to='/' className='footer-link'> About Us</Link><br />
+                    <Link to='/about' className='footer-link'> About Us</Link><br />
                     <Link to='/' className='footer-link'> Company Profile</Link><br />
                     <Link to='/contact' className='footer-link'> Contact Us</Link><br />
                 </Col>
