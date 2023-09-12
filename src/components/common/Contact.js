@@ -3,7 +3,8 @@ import { Form, Container, Row, Col, Button } from "react-bootstrap";
 import axios from 'axios';
 import AppUrl from '../../Api/AppUrl';
 import { Validation } from '../../Validation/Validation';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function Contact() {
 
     const [name, setName] = useState('');
@@ -16,16 +17,16 @@ function Contact() {
         event.preventDefault();
 
         if (name.length === 0) {
-            alert("Please enter your name");
+            toast.error("Please enter your name");
             return;
         } else if (email.length === 0) {
-            alert("Please enter your email");
+            toast.error("Please enter your email");
             return;
         } else if (message.length === 0) {
-            alert("Please enter your message");
+            toast.error("Please enter your message");
             return;
         } else if (!Validation().NameRegx.test(name)) {
-            alert("Invalid Name");
+            toast.error("Invalid Name");
             return;
         }
 
@@ -42,15 +43,15 @@ function Contact() {
                 setName('');
                 setEmail('');
                 setMessage('');
-                alert('Message sent successfully');
+                toast.success('Message sent successfully');
                 setSendBtn('Send');
             } else {
-                alert('Error');
+                toast.error('Error');
                 setSendBtn('Send');
             }
           })
           .catch(function (error) {
-            alert(error);
+            toast.error(error);
             setSendBtn('Send');
         });
     }
@@ -80,6 +81,7 @@ function Contact() {
                     </Col>
                 </Row>
             </Container>
+            <ToastContainer />
         </>
     )
 }
