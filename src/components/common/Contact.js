@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { Form, Container, Row, Col, Button } from "react-bootstrap";
+import axios from 'axios';
+import AppUrl from '../../Api/AppUrl';
+import { Validation } from '../../Validation/Validation';
 
 function Contact() {
 
@@ -8,8 +11,43 @@ function Contact() {
     const [message, setMessage] = useState('');
 
     const onFormSubmit = (event) => {
+
         event.preventDefault();
-        alert('Hello');
+
+        if (name.length === 0) {
+            alert("Please enter your name");
+            return;
+        } else if (email.length === 0) {
+            alert("Please enter your email");
+            return;
+        } else if (message.length === 0) {
+            alert("Please enter your message");
+            return;
+        } else if (!Validation().NameRegx.test(name)) {
+            alert("Invalid Name");
+            return;
+        }        
+
+		const formData = new FormData();
+
+        formData.append('name', name);
+        formData.append('email', email);
+        formData.append('message', message);
+
+        axios.post(AppUrl.postContact, formData)
+          .then(function (response) {
+            if (response.status === 200 && response.data === 1) {
+                setName('');
+                setEmail('');
+                setMessage('');
+                alert('Message sent successfully');
+            } else {
+                alert('Error');
+            }
+          })
+          .catch(function (error) {
+            alert(error);
+          });
     }
 
     return (
@@ -22,10 +60,10 @@ function Contact() {
                                 <Form onSubmit={onFormSubmit} className='onboardForm'>
                                     <h4 className='section-title-login'>Contact With Us</h4>
                                     <h6 className='section-sub-title'>Please contact with us</h6>
-                                    <input className='form-control m-2' type="text" placeholder='Enter Your Name' onChange={(e) => {setName(e.target.value)}} />
-                                    <input className='form-control m-2' type="email" placeholder='Enter Email Id' onChange={(e) => {setEmail(e.target.value);}} />
-                                    <Form.Control className='form-control m-2' as="textarea" rows={3} placeholder='Message' onChange={(e) => {setMessage(e.target.value);}} />
-                                    <Button type='submit' className='btn btn-block m-2 site-btn-login'>Next</Button>
+                                    <input className='form-control m-2' type="text" placeholder='Enter Your Name' value={name} onChange={(e) => {setName(e.target.value)}} />
+                                    <input className='form-control m-2' type="email" placeholder='Enter Email Id' value={email} onChange={(e) => {setEmail(e.target.value);}} />
+                                    <Form.Control className='form-control m-2' as="textarea" rows={3} placeholder='Message' value={message} onChange={(e) => {setMessage(e.target.value);}} />
+                                    <Button type='submit' className='btn btn-block m-2 site-btn-login'>Send</Button>
                                 </Form>
                             </Col>
                             <Col className='p-0 Desktop m-0' md={6} lg={6} sm={6} xs={6}> <br /><br />
