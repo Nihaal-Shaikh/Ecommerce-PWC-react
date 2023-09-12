@@ -16,7 +16,7 @@ function Homepage() {
 
 	useEffect(() => {
 		window.scroll(0, 0);
-		axios.get(AppUrl.getVisitorDetailsURL()).then().catch();
+		axios.get(AppUrl.getVisitorDetailsURL).then().catch();
 	}, []);
 
 	return (

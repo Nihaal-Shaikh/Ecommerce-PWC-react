@@ -1,7 +1,61 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, Container, Row, Col, Button } from "react-bootstrap";
-
+import axios from 'axios';
+import AppUrl from '../../Api/AppUrl';
+import { Validation } from '../../Validation/Validation';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function Contact() {
+
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [message, setMessage] = useState('');
+    const [sendBtn, setSendBtn] = useState('Send');
+
+    const onFormSubmit = (event) => {
+
+        event.preventDefault();
+
+        if (name.length === 0) {
+            toast.error("Please enter your name");
+            return;
+        } else if (email.length === 0) {
+            toast.error("Please enter your email");
+            return;
+        } else if (message.length === 0) {
+            toast.error("Please enter your message");
+            return;
+        } else if (!Validation().NameRegx.test(name)) {
+            toast.error("Invalid Name");
+            return;
+        }
+
+        setSendBtn('Sending...');
+		const formData = new FormData();
+
+        formData.append('name', name);
+        formData.append('email', email);
+        formData.append('message', message);
+
+        axios.post(AppUrl.postContact, formData)
+          .then(function (response) {
+            if (response.status === 200 && response.data === 1) {
+                setName('');
+                setEmail('');
+                setMessage('');
+                toast.success('Message sent successfully');
+                setSendBtn('Send');
+            } else {
+                toast.error('Error');
+                setSendBtn('Send');
+            }
+          })
+          .catch(function (error) {
+            toast.error(error);
+            setSendBtn('Send');
+        });
+    }
+
     return (
         <>
             <Container>
@@ -9,13 +63,13 @@ function Contact() {
                     <Col className='shadow-sm bg-white mt-2' md={12} lg={12} sm={12} xs={12}>
                         <Row className='text-center'>
                             <Col className='d-flex justify-content-center' md={6} lg={6} sm={12} xs={12}>
-                                <Form className='onboardForm'>
+                                <Form onSubmit={onFormSubmit} className='onboardForm'>
                                     <h4 className='section-title-login'>Contact With Us</h4>
                                     <h6 className='section-sub-title'>Please contact with us</h6>
-                                    <input className='form-control m-2' type="text" placeholder='Enter Mobile Number' />
-                                    <input className='form-control m-2' type="email" placeholder='Enter Email Id' />
-                                    <input className='form-control m-2' type="text" placeholder='Enter Your Message' />
-                                    <Button className='btn btn-block m-2 site-btn-login'>Next</Button>
+                                    <input className='form-control m-2' type="text" placeholder='Enter Your Name' value={name} onChange={(e) => {setName(e.target.value)}} />
+                                    <input className='form-control m-2' type="email" placeholder='Enter Email Id' value={email} onChange={(e) => {setEmail(e.target.value);}} />
+                                    <Form.Control className='form-control m-2' as="textarea" rows={3} placeholder='Message' value={message} onChange={(e) => {setMessage(e.target.value);}} />
+                                    <Button type='submit' className='btn btn-block m-2 site-btn-login'>{sendBtn}</Button>
                                 </Form>
                             </Col>
                             <Col className='p-0 Desktop m-0' md={6} lg={6} sm={6} xs={6}> <br /><br />
@@ -27,6 +81,7 @@ function Contact() {
                     </Col>
                 </Row>
             </Container>
+            <ToastContainer />
         </>
     )
 }
