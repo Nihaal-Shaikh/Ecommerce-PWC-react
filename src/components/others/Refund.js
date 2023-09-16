@@ -1,16 +1,68 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Row, Col } from "react-bootstrap";
+import axios from 'axios';
+import AppUrl from '../../Api/AppUrl';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import parse from 'html-react-parser';
 
 function Refund() {
+
+    const [refundText, setRefundText] = useState('');
+    const [loaderDiv, setLoaderDiv] = useState('');
+    const [mainDiv, setMainDiv] = useState('d-none');
+    
+    useEffect(() => {
+
+        const siteInfoRefund = sessionStorage.getItem('siteInfoRefund');
+
+        if (siteInfoRefund == undefined) {
+            axios.get(AppUrl.allSiteInfo)
+                .then(response => {
+                    setRefundText(response.data[0]['refund']);
+                    setLoaderDiv('d-none');
+                    setMainDiv('');
+                    sessionStorage.setItem('siteInfoRefund', response.data[0]['refund']);
+                })
+                .catch(error => {
+                    toast.error('Something went wrong', {
+                        position: 'bottom-center'
+                    });
+                });
+        } else {
+            setRefundText(siteInfoRefund);
+            setLoaderDiv('d-none');
+            setMainDiv('');
+        }
+    }, []);
+
     return (
         <>
             <Container>
                 <Row className='p-2'>
                     <Col className='shadow-sm bg-white mt-2' md={12} lg={12} sm={12} xs={12}>
+                        <div className={loaderDiv}>
+                            <div class="ph-item">
+                                <div class="ph-col-12">
+                                    <div class="ph-row">
+                                        <div class="ph-col-4"></div>
+                                        <div class="ph-col-8 empty"></div>
+                                        <div class="ph-col-6"></div>
+                                        <div class="ph-col-6 empty"></div>
+                                        <div class="ph-col-12"></div>
+                                        <div class="ph-col-12"></div>
+                                        <div class="ph-col-12"></div>
+                                        <div class="ph-col-12"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className={mainDiv}>
                         <h4 className='section-title-login'>Refund Page</h4>
-                        <p className='section-title-contact'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        <p className='section-title-contact'>{parse(refundText)}</p></div>
                     </Col>
                 </Row>
+                <ToastContainer />
             </Container>
         </>
     )

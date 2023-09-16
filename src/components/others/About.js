@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col } from "react-bootstrap";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import AppUrl from '../../Api/AppUrl';
 import axios from 'axios';
 import parse from 'html-react-parser';
@@ -11,15 +13,27 @@ function About() {
     const [mainDiv, setMainDiv] = useState('d-none');
 
     useEffect(() => {
+
+        const siteInfoAbout = sessionStorage.getItem('siteInfoAbout');
+
+        if (siteInfoAbout == undefined) {
         axios.get(AppUrl.allSiteInfo)
             .then(response => {
                 setAboutText(response.data[0]['about']);
                 setLoaderDiv('d-none');
                 setMainDiv('');
+                sessionStorage.setItem('siteInfoAbout', response.data[0]['about']);
             })
             .catch(error => {
-                // Handle errors here
+                toast.error('Something went wrong', {
+                    position: 'bottom-center'
+                });
             });
+    } else {
+        setAboutText(siteInfoAbout);
+        setLoaderDiv('d-none');
+        setMainDiv('');
+    }
     }, []);
 
     return (
@@ -49,6 +63,7 @@ function About() {
                         </div>
                     </Col>
                 </Row>
+                <ToastContainer />
             </Container>
         </>
     )
