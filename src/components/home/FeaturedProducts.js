@@ -12,7 +12,6 @@ function FeaturedProducts() {
 
         axios.get(AppUrl.ProductListByRemark("FEATURED"))
             .then(response => {
-                console.log(response);
                 setProductData(response.data);
             })
             .catch(error => {
