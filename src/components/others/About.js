@@ -6,34 +6,34 @@ import AppUrl from '../../Api/AppUrl';
 import axios from 'axios';
 import parse from 'html-react-parser';
 
-function Privacy() {
+function About() {
 
-    const [privacyText, setPrivacyText] = useState('');
+    const [aboutText, setAboutText] = useState('');
     const [loaderDiv, setLoaderDiv] = useState('');
     const [mainDiv, setMainDiv] = useState('d-none');
 
     useEffect(() => {
 
-        const siteInfoPrivacy = sessionStorage.getItem('siteInfoPrivacy');
+        const siteInfoAbout = sessionStorage.getItem('siteInfoAbout');
 
-        if (siteInfoPrivacy == undefined) {
-            axios.get(AppUrl.allSiteInfo)
-                .then(response => {
-                    setPrivacyText(response.data[0]['privacy']);
-                    setLoaderDiv('d-none');
-                    setMainDiv('');
-                    sessionStorage.setItem('siteInfoPrivacy', response.data[0]['privacy']);
-                })
-                .catch(error => {
-                    toast.error('Something went wrong', {
-                        position: 'bottom-center'
-                    });
+        if (siteInfoAbout == undefined) {
+        axios.get(AppUrl.allSiteInfo)
+            .then(response => {
+                setAboutText(response.data[0]['about']);
+                setLoaderDiv('d-none');
+                setMainDiv('');
+                sessionStorage.setItem('siteInfoAbout', response.data[0]['about']);
+            })
+            .catch(error => {
+                toast.error('Something went wrong', {
+                    position: 'bottom-center'
                 });
-        } else {
-            setPrivacyText(siteInfoPrivacy);
-            setLoaderDiv('d-none');
-            setMainDiv('');
-        }
+            });
+    } else {
+        setAboutText(siteInfoAbout);
+        setLoaderDiv('d-none');
+        setMainDiv('');
+    }
     }, []);
 
     return (
@@ -58,8 +58,9 @@ function Privacy() {
                             </div>
                         </div>
                         <div className={mainDiv}>
-                            <h4 className='section-title-login'>Privacy Page</h4>
-                            <p className='section-title-contact'>{parse(privacyText)}</p></div>
+                            <h4 className='section-title-login'>About Us Page</h4>
+                            <p className='section-title-contact'>{parse(aboutText)}</p>
+                        </div>
                     </Col>
                 </Row>
                 <ToastContainer />
@@ -68,4 +69,4 @@ function Privacy() {
     )
 }
 
-export default Privacy
+export default About
