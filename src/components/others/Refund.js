@@ -11,7 +11,7 @@ function Refund() {
     const [refundText, setRefundText] = useState('');
     const [loaderDiv, setLoaderDiv] = useState('');
     const [mainDiv, setMainDiv] = useState('d-none');
-    
+
     useEffect(() => {
 
         const siteInfoRefund = sessionStorage.getItem('siteInfoRefund');
@@ -58,8 +58,8 @@ function Refund() {
                             </div>
                         </div>
                         <div className={mainDiv}>
-                        <h4 className='section-title-login'>Refund Page</h4>
-                        <p className='section-title-contact'>{parse(refundText)}</p></div>
+                            <h4 className='section-title-login'>Refund Page</h4>
+                            <p className='section-title-contact'>{parse(refundText)}</p></div>
                     </Col>
                 </Row>
                 <ToastContainer />
