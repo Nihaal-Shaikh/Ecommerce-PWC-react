@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-
 function MegaMenu(props) {
 
     const [activeIndex, setActiveIndex] = useState(null);
@@ -37,7 +36,7 @@ function MegaMenu(props) {
                 </ul>
             </div>
         </div>
-    })
+    });
 
     return (
         <div className='accordionMenuDiv'>
