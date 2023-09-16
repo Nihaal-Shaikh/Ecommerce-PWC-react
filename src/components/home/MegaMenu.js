@@ -5,7 +5,7 @@ function MegaMenu(props) {
 
     const [activeIndex, setActiveIndex] = useState(null);
     const catList = props.data;
-    
+
     const toggleAccordion = (index) => {
         setActiveIndex(prevIndex => (prevIndex === index ? null : index));
     };
@@ -29,8 +29,11 @@ function MegaMenu(props) {
             </button>
             <div style={getPanelStyle(i)} className={`panel ${activeIndex === i ? 'open' : ''}`}>
                 <ul>
-                    <li><a href="#" className='accordionItem'>{catList.category_image}</a></li>
-                    <li><a href="#" className='accordionItem'>Men's T-Shirt 2</a></li>
+                    {
+                        (catList.subcategory_name).map((subList, i) => {
+                            return <li><a href="#" className='accordionItem'>{subList.subcategory_name}</a></li>
+                        })
+                    }
                 </ul>
             </div>
         </div>
