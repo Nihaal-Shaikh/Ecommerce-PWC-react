@@ -1,13 +1,11 @@
 import React from 'react';
-import { Container, Row, Col, Card } from 'react-bootstrap';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Slider1 from "../../assets/images/slider1.jpg";
-import Slider2 from "../../assets/images/slider2.jpg";
-import Slider3 from "../../assets/images/slider3.jpg";
 
-function HomeSlider() {
+function HomeSlider(props) {
+
+    const sliderImages = props.data;
 
     const settings = {
         dots: true,
@@ -49,15 +47,11 @@ function HomeSlider() {
     return (
         <div>
             <Slider {...settings}>
-                <div>
-                    <img className='slider-img' src={Slider1} alt="" />
-                </div>
-                <div>
-                    <img className='slider-img' src={Slider2} alt="" />
-                </div>
-                <div>
-                    <img className='slider-img' src={Slider3} alt="" />
-                </div>
+                {sliderImages.map((sliderImage, i) => (
+                    <div key={i.toString()}>
+                        <img className='slider-img' src={sliderImage.slider_image} alt="" />
+                    </div>
+                ))}
             </Slider>
         </div>
     )
