@@ -33,18 +33,18 @@ function HomeTop() {
 
     return (
         <>
-        <HomeSliderLoading loaderDiv={loaderDiv} />
-        <div className={mainDiv}>
-            <Container className='p-0 m-0 overflow-hidden' fluid={true}>
-                <Row>
-                    <Col lg={3} md={3} sm={12}>
-                        <MegaMenu data={menuData} />
-                    </Col>
-                    <Col lg={9} md={9} sm={12}>
-                        <HomeSlider data={sliderData} />
-                    </Col>
-                </Row>
-            </Container>
+            <HomeSliderLoading loaderDiv={loaderDiv} />
+            <div className={mainDiv}>
+                <Container className='p-0 m-0 overflow-hidden' fluid={true}>
+                    <Row>
+                        <Col lg={3} md={3} sm={12}>
+                            <MegaMenu data={menuData} />
+                        </Col>
+                        <Col lg={9} md={9} sm={12}>
+                            <HomeSlider data={sliderData} />
+                        </Col>
+                    </Row>
+                </Container>
             </div>
         </>
     )

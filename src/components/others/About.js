@@ -17,23 +17,23 @@ function About() {
         const siteInfoAbout = sessionStorage.getItem('siteInfoAbout');
 
         if (siteInfoAbout == undefined) {
-        axios.get(AppUrl.allSiteInfo)
-            .then(response => {
-                setAboutText(response.data[0]['about']);
-                setLoaderDiv('d-none');
-                setMainDiv('');
-                sessionStorage.setItem('siteInfoAbout', response.data[0]['about']);
-            })
-            .catch(error => {
-                toast.error('Something went wrong', {
-                    position: 'bottom-center'
+            axios.get(AppUrl.allSiteInfo)
+                .then(response => {
+                    setAboutText(response.data[0]['about']);
+                    setLoaderDiv('d-none');
+                    setMainDiv('');
+                    sessionStorage.setItem('siteInfoAbout', response.data[0]['about']);
+                })
+                .catch(error => {
+                    toast.error('Something went wrong', {
+                        position: 'bottom-center'
+                    });
                 });
-            });
-    } else {
-        setAboutText(siteInfoAbout);
-        setLoaderDiv('d-none');
-        setMainDiv('');
-    }
+        } else {
+            setAboutText(siteInfoAbout);
+            setLoaderDiv('d-none');
+            setMainDiv('');
+        }
     }, []);
 
     return (
