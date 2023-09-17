@@ -8,11 +8,19 @@ import AppUrl from '../../Api/AppUrl';
 function HomeTop() {
 
     const [menuData, setMenuData] = useState([]);
+    const [sliderData, setSliderData] = useState([]);
 
     useEffect(() => {
         axios.get(AppUrl.allCategoryDetails)
             .then(response => {
                 setMenuData(response.data);
+            })
+            .catch(error => {
+            });
+
+        axios.get(AppUrl.allSlider)
+            .then(response => {
+                setSliderData(response.data);
             })
             .catch(error => {
             });
@@ -26,7 +34,7 @@ function HomeTop() {
                         <MegaMenu data={menuData} />
                     </Col>
                     <Col lg={9} md={9} sm={12}>
-                        <HomeSlider />
+                        <HomeSlider data={sliderData} />
                     </Col>
                 </Row>
             </Container>
