@@ -32,8 +32,8 @@ function MegaMenu(props) {
                         </button>
                         <div style={getPanelStyle(i)} className={`panel ${activeIndex === i ? 'open' : ''}`}>
                             <ul>
-                                {cat.subcategory_name.map((subList, j) => (
-                                    <li key={j.toString()}>
+                                {cat.subcategory_name.map((subList) => (
+                                    <li>
                                         <Link to={"productSubCategory/" + subList.category_name + '/' + subList.subcategory_name} className='accordionItem'>{subList.subcategory_name}</Link>
                                     </li>
                                 ))}

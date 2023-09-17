@@ -11,7 +11,7 @@ function SubCategory(props) {
         <>
             <Container className="text-center" fluid={true}>
                 <div className='section-title text-center mb-55'>
-                    <h2>{category}</h2>
+                    <h2>{category} / {subcategory}</h2>
                 </div>
                 <Row>
                     {productData.map((ProductList, i) => (

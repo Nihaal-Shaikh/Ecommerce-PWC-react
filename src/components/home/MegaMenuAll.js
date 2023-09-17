@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AppUrl from '../../Api/AppUrl';
+import { Link } from 'react-router-dom';
 
 function MegaMenuAll() {
 
@@ -50,11 +51,9 @@ function MegaMenuAll() {
                             >
                                 <ul>
                                     {catList.subcategory_name.map((subList, j) => (
-                                        <li key={j.toString()}>
-                                            <a href="#" className='accordionItemAll'>
-                                                {subList.subcategory_name}
-                                            </a>
-                                        </li>
+                                    <li key={j.toString()}>
+                                        <Link to={"productSubCategory/" + subList.category_name + '/' + subList.subcategory_name} className='accordionItem'>{subList.subcategory_name}</Link>
+                                    </li>
                                     ))}
                                 </ul>
                             </div>
