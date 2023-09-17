@@ -16,6 +16,8 @@ function ProductListBySubCategory(category, subcategory) {
   return `${getBaseURL}/productListBySubCategory/${category}/${subcategory}`;
 }
 
+const allSlider = `${getBaseURL}/allSlider`;
+
 const AppUrl = {
     getBaseURL,
     getVisitorDetailsURL,
@@ -24,7 +26,8 @@ const AppUrl = {
     allCategoryDetails,
     ProductListByRemark,
     ProductListByCategory,
-    ProductListBySubCategory
+    ProductListBySubCategory,
+    allSlider
 };
 
 export default AppUrl;

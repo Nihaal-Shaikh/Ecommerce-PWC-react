@@ -1,5 +1,10 @@
 @media (max-width: 374.98px) {
 
+    .slider-img {
+        width: 100% !important;
+        height: 225px;
+    }
+
     .Mobile {}
 
     .Desktop {
@@ -8,6 +13,12 @@
 }
 
 @media (min-width: 375.98px) and (max-width: 575.98px) {
+
+    .slider-img {
+        width: 100% !important;
+        height: 225px;
+    }
+    
     .Mobile {}
 
     .Desktop {
