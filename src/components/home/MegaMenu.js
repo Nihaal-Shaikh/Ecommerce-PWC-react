@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function MegaMenu(props) {
 
@@ -33,7 +34,7 @@ function MegaMenu(props) {
                             <ul>
                                 {cat.subcategory_name.map((subList, j) => (
                                     <li key={j.toString()}>
-                                        <a href="#" className='accordionItem'>{subList.subcategory_name}</a>
+                                        <Link to={"productSubCategory/" + subList.category_name + '/' + subList.subcategory_name} className='accordionItem'>{subList.subcategory_name}</Link>
                                     </li>
                                 ))}
                             </ul>
