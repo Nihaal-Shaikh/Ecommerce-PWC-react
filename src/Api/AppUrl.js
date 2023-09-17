@@ -4,12 +4,27 @@ const postContact = `${getBaseURL}/postContact`;
 const allSiteInfo = `${getBaseURL}/allSiteInfo`;
 const allCategoryDetails = `${getBaseURL}/allCategory`;
 
+function ProductListByRemark(Remark) {
+  return `${getBaseURL}/productListByRemark/${Remark}`;
+}
+
+function ProductListByCategory(category) {
+  return `${getBaseURL}/productListByCategory/${category}`;
+}
+
+function ProductListBySubCategory(category, subcategory) {
+  return `${getBaseURL}/productListBySubCategory/${category}/${subcategory}`;
+}
+
 const AppUrl = {
     getBaseURL,
     getVisitorDetailsURL,
     postContact,
     allSiteInfo,
-    allCategoryDetails
+    allCategoryDetails,
+    ProductListByRemark,
+    ProductListByCategory,
+    ProductListBySubCategory
 };
 
 export default AppUrl;
