@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function MegaMenu(props) {
 
@@ -16,32 +17,30 @@ function MegaMenu(props) {
             overflow: 'hidden',
         };
     };
-    const myView = catList.map((catList, i) => {
-        return <div key={i.toString()}>
-
-            <button
-                className={`accordion ${activeIndex === i ? 'active' : ''}`}
-                onClick={() => toggleAccordion(i)}
-            >
-                <img className='accordionMenuIcon' src={catList.category_image} />
-                &nbsp; {catList.category_name}
-            </button>
-            <div style={getPanelStyle(i)} className={`panel ${activeIndex === i ? 'open' : ''}`}>
-                <ul>
-                    {
-                        (catList.subcategory_name).map((subList, i) => {
-                            return <li><a href="#" className='accordionItem'>{subList.subcategory_name}</a></li>
-                        })
-                    }
-                </ul>
-            </div>
-        </div>
-    });
 
     return (
         <div className='accordionMenuDiv'>
             <div className='accordionMenuDivInside'>
-                {myView}
+                {catList.map((cat, i) => (
+                    <div key={i.toString()}>
+                        <button
+                            className={`accordion ${activeIndex === i ? 'active' : ''}`}
+                            onClick={() => toggleAccordion(i)}
+                        >
+                            <img className='accordionMenuIcon' src={cat.category_image} alt="" />
+                            &nbsp; {cat.category_name}
+                        </button>
+                        <div style={getPanelStyle(i)} className={`panel ${activeIndex === i ? 'open' : ''}`}>
+                            <ul>
+                                {cat.subcategory_name.map((subList) => (
+                                    <li>
+                                        <Link to={"productSubCategory/" + subList.category_name + '/' + subList.subcategory_name} className='accordionItem'>{subList.subcategory_name}</Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+                ))}
             </div>
         </div>
     )

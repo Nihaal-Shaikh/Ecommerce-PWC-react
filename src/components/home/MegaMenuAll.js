@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AppUrl from '../../Api/AppUrl';
+import { Link } from 'react-router-dom';
 
 function MegaMenuAll() {
 
@@ -31,33 +32,33 @@ function MegaMenuAll() {
         };
     };
 
-    const MyView = menuData.map((catList, i) => {
-        return <div key={i.toString()}>
-            <button
-                className={`accordionAll ${activeIndex === i ? 'active' : ''}`}
-                onClick={() => toggleAccordion(i)}
-            >
-                <img className='accordionMenuIconAll' src={catList.category_image} />
-                &nbsp; {catList.category_name}
-            </button>
-            <div style={getPanelStyle(i)} className={`panelAll ${activeIndex === i ? 'open' : ''}`}>
-                <ul>
-
-                    {
-                        (catList.subcategory_name).map((subList, i) => {
-                            return <li><a href="#" className='accordionItemAll'>{subList.subcategory_name}</a></li>
-                        })
-                    }
-                </ul>
-            </div>
-        </div>
-    });
-
     return (
         <>
             <div className='accordionMenuDivAll'>
                 <div className='accordionMenuDivInsideAll'>
-                    {MyView}
+                    {menuData.map((catList, i) => (
+                        <div key={i.toString()}>
+                            <button
+                                className={`accordionAll ${activeIndex === i ? 'active' : ''}`}
+                                onClick={() => toggleAccordion(i)}
+                            >
+                                <img className='accordionMenuIconAll' src={catList.category_image} alt="" />
+                                &nbsp; {catList.category_name}
+                            </button>
+                            <div
+                                style={getPanelStyle(i)}
+                                className={`panelAll ${activeIndex === i ? 'open' : ''}`}
+                            >
+                                <ul>
+                                    {catList.subcategory_name.map((subList, j) => (
+                                    <li key={j.toString()}>
+                                        <Link to={"productSubCategory/" + subList.category_name + '/' + subList.subcategory_name} className='accordionItem'>{subList.subcategory_name}</Link>
+                                    </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
+                    ))}
                 </div>
             </div>
         </>

@@ -11,6 +11,8 @@ import NotificationPage from '../pages/NotificationPage'
 import FavouritePage from '../pages/FavouritePage'
 import CartPage from '../pages/CartPage'
 import AboutPage from '../pages/AboutPage'
+import ProductCategoryPage from '../pages/ProductCategoryPage'
+import ProductSubCategoryPage from '../pages/ProductSubCategoryPage'
 
 function AppRoute() {
     return (
@@ -27,6 +29,8 @@ function AppRoute() {
                 <Route path="/favourite" element={<FavouritePage />} />
                 <Route path="/cart" element={<CartPage />} />
                 <Route path="/about" element={<AboutPage />} />
+                <Route path="/productCategory/:category" element={<ProductCategoryPage />} />
+                <Route path="/productSubCategory/:category/:subcategory" element={<ProductSubCategoryPage />} />
             </Routes>
         </>
     )
