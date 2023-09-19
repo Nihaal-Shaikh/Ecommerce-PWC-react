@@ -35,7 +35,7 @@ function Categories() {
                     <Row>
                         {menuData.map((catList, i) => (
                             <Col key={i.toString()} className="p-0" xl={2} lg={2} md={2} sm={6} xs={6}>
-                                <Link to={"/productCategory/" + catList.category_name}>
+                                <Link className='text-link' to={"/productCategory/" + catList.category_name}>
                                     <Card className="h-100 w-100 text-center">
                                         <Card.Body>
                                             <img className="center" src={catList.category_image} alt={catList.category_name} />

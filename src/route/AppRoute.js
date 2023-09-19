@@ -24,7 +24,7 @@ function AppRoute() {
                 <Route path="/purchase" element={<PurchasePage />} />
                 <Route path="/privacy" element={<PrivacyPage />} />
                 <Route path="/refund" element={<RefundPage />} />
-                <Route path="/productDetail" element={<ProductDetailPage />} />
+                <Route path="/productDetails/:id" element={<ProductDetailPage />} />
                 <Route path="/notification" element={<NotificationPage />} />
                 <Route path="/favourite" element={<FavouritePage />} />
                 <Route path="/cart" element={<CartPage />} />
