@@ -93,7 +93,7 @@ function NewArrivals() {
                         <Slider ref={sliderRef} {...settings}>
                             {productData.map((NewList, i) => (
                                 <div key={i.toString()}>
-                                    <Link to={"/productDetails/" + NewList.id}>
+                                    <Link className='text-link' to={"/productDetails/" + NewList.id}>
                                         <Card className='image-box card'>
                                             <img className='center' src={NewList.image} alt="" />
                                             <Card.Body>

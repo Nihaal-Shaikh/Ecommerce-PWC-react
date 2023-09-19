@@ -16,7 +16,7 @@ function Category(props) {
                 <Row>
                     {productData.map((ProductList, i) => (
                         <Col className='p-0' xl={3} lg={3} md={3} sm={6} xs={6} key={i}>
-                            <Link to={"/productDetails/" + ProductList.id}>
+                            <Link className='text-link' to={"/productDetails/" + ProductList.id}>
                                 <Card className='image-box card w-100'>
                                     <img className='center w-75' src={ProductList.image} alt="" />
                                     <Card.Body>
