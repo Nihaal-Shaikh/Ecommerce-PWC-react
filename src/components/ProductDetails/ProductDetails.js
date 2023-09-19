@@ -1,14 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import { Link } from "react-router-dom";
-import Product1 from "../../assets/images/product1.png";
-import Product2 from "../../assets/images/product2.png";
-import Product3 from "../../assets/images/product3.png";
-import Product4 from "../../assets/images/product4.png";
 
 function ProductDetails(props) {
 
     const productData = props.data;
+    const [mainImage, setMainImage] = useState(productData['productDetails'][0]['image_one']);
 
     return (
         <>
@@ -17,20 +14,20 @@ function ProductDetails(props) {
                     <Col className="shadow-sm bg-white pb-3 mt-4" md={12} lg={12} sm={12} xs={12}>
                         <Row>
                             <Col className="p-3" md={6} lg={6} sm={12} xs={12}>
-                                <img className="w-100" src={productData['productDetails'][0]['image_one']} />
+                                <img className="bigImage" src={mainImage} />
                                 <Container className="my-3">
                                     <Row>
                                         <Col className="p-0 m-0" md={3} lg={3} sm={3} xs={3}>
-                                            <img className="w-100" src={productData['productDetails'][0]['image_one']} />
+                                            <img className="w-100 smallImage product-sm-img" onClick={() => setMainImage(productData['productDetails'][0]['image_one'])} src={productData['productDetails'][0]['image_one']} />
                                         </Col>
                                         <Col className="p-0 m-0" md={3} lg={3} sm={3} xs={3}>
-                                            <img className="w-100" src={productData['productDetails'][0]['image_two']} />
+                                            <img className="w-100 smallImage product-sm-img" onClick={() => setMainImage(productData['productDetails'][0]['image_two'])} src={productData['productDetails'][0]['image_two']} />
                                         </Col>
                                         <Col className="p-0 m-0" md={3} lg={3} sm={3} xs={3}>
-                                            <img className="w-100" src={productData['productDetails'][0]['image_three']} />
+                                            <img className="w-100 smallImage product-sm-img" onClick={() => setMainImage(productData['productDetails'][0]['image_three'])} src={productData['productDetails'][0]['image_three']} />
                                         </Col>
                                         <Col className="p-0 m-0" md={3} lg={3} sm={3} xs={3}>
-                                            <img className="w-100" src={productData['productDetails'][0]['image_four']} />
+                                            <img className="w-100 smallImage product-sm-img" onClick={() => setMainImage(productData['productDetails'][0]['image_four'])} src={productData['productDetails'][0]['image_four']} />
                                         </Col>
                                     </Row>
                                 </Container>
