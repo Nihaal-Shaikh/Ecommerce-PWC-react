@@ -5,17 +5,22 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import axios from 'axios';
 import AppUrl from '../../Api/AppUrl';
+import NewArrivalLoading from '../Placeholder/NewArrivalLoading';
 
 function NewArrivals() {
 
     const [productData, setProductData] = useState([]);
     const sliderRef = useRef(null);
+    const [loaderDiv, setLoaderDiv] = useState('');
+    const [mainDiv, setMainDiv] = useState('d-none');
 
     useEffect(() => {
 
         axios.get(AppUrl.ProductListByRemark("NEW"))
             .then(response => {
                 setProductData(response.data);
+                setLoaderDiv('d-none');
+                setMainDiv('');
             })
             .catch(error => {
             });
@@ -72,6 +77,8 @@ function NewArrivals() {
 
     return (
         <>
+            <NewArrivalLoading loaderDiv={loaderDiv} />
+            <div className={mainDiv}>
             <Container className='text-center' fluid={true}>
                 <div className='section-title text-center mb-55'>
                     <h2>NEW ARRIVALS &nbsp;
@@ -103,6 +110,7 @@ function NewArrivals() {
                     </Slider>
                 </Row>
             </Container>
+            </div>
         </>
     )
 }
