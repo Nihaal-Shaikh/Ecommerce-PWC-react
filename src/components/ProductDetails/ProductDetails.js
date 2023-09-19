@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import Select from 'react-select'
-import { Link } from "react-router-dom";
 
 function ProductDetails(props) {
 
@@ -70,11 +69,13 @@ function ProductDetails(props) {
                             <Col className="p-3 " md={6} lg={6} sm={12} xs={12}>
                                 <h5 className="Product-Name">{productData['productList'][0]['title']}</h5>
                                 <h6 className="section-sub-title">{productData['productDetails'][0]['short_description']}</h6>
-                                <div className="input-group">
-                                    <div className="Product-price-card d-inline ">Reguler Price ${productData['productList'][0]['price']}</div>
-                                    <div className="Product-price-card d-inline ">50% Discount</div>
-                                    <div className="Product-price-card d-inline ">New Price ${productData['productList'][0]['special_price']}</div>
-                                </div>
+                                {!productData['productList'][0]['special_price'] ? (
+                                    <p className='product-price-on-card'>Price: ${productData['productList'][0]['price']}</p>
+                                ) : (
+                                    <p className='product-price-on-card'>
+                                        Price: <strike className='text-secondary'>${productData['productList'][0]['special_price']}</strike> ${productData['productList'][0]['price']}
+                                    </p>
+                                )}
                                 <h6 className="mt-2">Category: <b>{productData['productList'][0]['category']}</b></h6>
                                 <h6 className="mt-2">Sub Category: <b>{productData['productList'][0]['subcategory']}</b></h6>
                                 <h6 className="mt-2">Brand: <b>{productData['productList'][0]['brand']}</b></h6>
