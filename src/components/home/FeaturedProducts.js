@@ -35,7 +35,7 @@ function FeaturedProducts() {
                     <Row>
                         {productData.map((FeaturedList, i) => (
                             <Col className='p-1' key={i} xl={2} lg={2} sm={4} xs={6}>
-                                <Link to="/productDetail">
+                                <Link to={"/productDetails/" + FeaturedList.id}>
                                     <Card className='image-box card'>
                                         <img className='center' src={FeaturedList.image} alt="" />
                                         <Card.Body>
