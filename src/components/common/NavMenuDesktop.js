@@ -9,6 +9,8 @@ function NavMenuDesktop() {
 
     const [sideNavState, setSideNavState] = useState('sideNavClose');
     const [contentOverState, setContentOverState] = useState('ContentOverlayClose');
+    const [searchKey, setSearchKey] = useState('');
+    const [searchRedirectStatus, setSearchRedirectStatus] = useState(false);
   
     const sideNavOpenClose = () => {
       if (sideNavState === 'sideNavOpen') {
@@ -18,6 +20,16 @@ function NavMenuDesktop() {
         setSideNavState('sideNavOpen');
         setContentOverState('ContentOverlayOpen');
       }
+    };
+
+    const searchOnChange = (event) => {
+        setSearchKey(event.value);
+    };
+
+    const onSearch = (event) => {
+        if(searchKey.length >= 2) {
+            setSearchRedirectStatus(true);
+        }
     };
     
     return (
@@ -32,8 +44,8 @@ function NavMenuDesktop() {
                             </Col>
                             <Col className='p-1 mt-1' lg={4} md={4} sm={12} xs={12}>
                                 <div className='input-group w-100'>
-                                    <input type="text" className='form-control' />
-                                    <Button type='button' className='btn site-btn'>
+                                    <input onChange={searchOnChange} type="text" className='form-control' />
+                                    <Button onClick={onSearch} type='button' className='btn site-btn'>
                                         <i className='fa fa-search' />
                                     </Button>
                                 </div>

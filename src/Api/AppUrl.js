@@ -24,6 +24,10 @@ function ProductDetails(id) {
 
 const notificationHistory = `${getBaseURL}/notification`;
 
+function SearchByProduct(searchKey) {
+  return `${getBaseURL}/search/${searchKey}`;
+}
+
 const AppUrl = {
     getBaseURL,
     getVisitorDetailsURL,
@@ -35,7 +39,8 @@ const AppUrl = {
     ProductListBySubCategory,
     allSlider,
     ProductDetails,
-    notificationHistory
+    notificationHistory,
+    SearchByProduct
 };
 
 export default AppUrl;
