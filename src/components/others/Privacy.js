@@ -5,6 +5,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import AppUrl from '../../Api/AppUrl';
 import axios from 'axios';
 import parse from 'html-react-parser';
+import Breadcrumb from 'react-bootstrap/Breadcrumb';
+import { Link } from "react-router-dom";
 
 function Privacy() {
 
@@ -39,6 +41,14 @@ function Privacy() {
     return (
         <>
             <Container>
+                <div className='breadBody'>
+                    <Breadcrumb>
+                        <Breadcrumb.Item><Link to="/">Home</Link></Breadcrumb.Item>
+                        <Breadcrumb.Item>
+                        <Link to="/privacy">Privacy</Link>
+                        </Breadcrumb.Item>
+                </Breadcrumb>
+                </div>
                 <Row className='p-2'>
                     <Col className='shadow-sm bg-white mt-2' md={12} lg={12} sm={12} xs={12}>
                         <div className={loaderDiv}>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import { Link } from "react-router-dom";
+import Breadcrumb from 'react-bootstrap/Breadcrumb';
 
 function Category(props) {
 
@@ -10,7 +11,15 @@ function Category(props) {
     return (
         <>
             <Container className="text-center" fluid={true}>
-                <div className='section-title text-center mb-55'>
+                <div className='breadBody'>
+                    <Breadcrumb>
+                        <Breadcrumb.Item><Link to="/">Home</Link></Breadcrumb.Item>
+                        <Breadcrumb.Item>
+                        <Link to={"/productCategory/" + category}>{category}</Link>
+                        </Breadcrumb.Item>
+                </Breadcrumb>
+                </div>
+                <div className='section-title text-center mb-40 mt-2'>
                     <h2>{category}</h2>
                 </div>
                 <Row>

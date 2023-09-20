@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import Select from 'react-select'
+import Select from 'react-select';
+import { Link } from "react-router-dom";
+import Breadcrumb from 'react-bootstrap/Breadcrumb';
 
 function ProductDetails(props) {
 
     const productData = props.data;
+    const title = productData['productList'][0]['title'];
+    const category = productData['productList'][0]['category'];
+    const subcategory = productData['productList'][0]['subcategory'];
     const [mainImage, setMainImage] = useState(productData['productDetails'][0]['image_one']);
     const [selectedColor, setSelectedColor] = useState(null);
     const [selectedSize, setSelectedSize] = useState(null);
@@ -17,7 +22,7 @@ function ProductDetails(props) {
 
     let colorOptions = [];
 
-    if(productData['productDetails'][0]['color']) {
+    if (productData['productDetails'][0]['color']) {
         const colorData = productData['productDetails'][0]['color'];
         const colorArray = colorData.split(',');
         colorOptions = colorArray.map((ColorList) => ({
@@ -27,7 +32,7 @@ function ProductDetails(props) {
     }
 
     let sizeOptions = [];
-    if(productData['productDetails'][0]['size']) {
+    if (productData['productDetails'][0]['size']) {
         const sizeData = productData['productDetails'][0]['size'];
         const sizeArray = sizeData.split(',');
         sizeOptions = sizeArray.map((SizeList) => ({
@@ -44,6 +49,14 @@ function ProductDetails(props) {
     return (
         <>
             <Container className="BetweenTwoSection" fluid={true}>
+                <div className='breadBody'>
+                    <Breadcrumb>
+                        <Breadcrumb.Item><Link to="/">Home</Link></Breadcrumb.Item>
+                        <Breadcrumb.Item><Link to={"/productCategory/" + category}>{category}</Link></Breadcrumb.Item>
+                        <Breadcrumb.Item><Link to={"/productSubCategory/" + category + '/' + subcategory}>{subcategory}</Link></Breadcrumb.Item>
+                        <Breadcrumb.Item><Link to={"/productDetails/" + productData['productDetails'][0]['product_id']}>{title}</Link></Breadcrumb.Item>
+                    </Breadcrumb>
+                </div>
                 <Row className="p-2">
                     <Col className="shadow-sm bg-white pb-3 mt-4" md={12} lg={12} sm={12} xs={12}>
                         <Row>
@@ -76,8 +89,8 @@ function ProductDetails(props) {
                                         Price: <strike className='text-secondary'>${productData['productList'][0]['special_price']}</strike> ${productData['productList'][0]['price']}
                                     </p>
                                 )}
-                                <h6 className="mt-2">Category: <b>{productData['productList'][0]['category']}</b></h6>
-                                <h6 className="mt-2">Sub Category: <b>{productData['productList'][0]['subcategory']}</b></h6>
+                                <h6 className="mt-2">Category: <b>{category}</b></h6>
+                                <h6 className="mt-2">Sub Category: <b>{subcategory}</b></h6>
                                 <h6 className="mt-2">Brand: <b>{productData['productList'][0]['brand']}</b></h6>
                                 <h6 className="mt-2">Product Code: <b>{productData['productList'][0]['product_code']}</b></h6>
                                 <div className={colorOptions.length > 0 ? '' : 'd-none'}>
