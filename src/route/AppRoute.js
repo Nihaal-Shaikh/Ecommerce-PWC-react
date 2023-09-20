@@ -13,6 +13,7 @@ import CartPage from '../pages/CartPage'
 import AboutPage from '../pages/AboutPage'
 import ProductCategoryPage from '../pages/ProductCategoryPage'
 import ProductSubCategoryPage from '../pages/ProductSubCategoryPage'
+import SearchPage from '../pages/SearchPage'
 
 function AppRoute() {
     return (
@@ -31,6 +32,7 @@ function AppRoute() {
                 <Route path="/about" element={<AboutPage />} />
                 <Route path="/productCategory/:category" element={<ProductCategoryPage />} />
                 <Route path="/productSubCategory/:category/:subcategory" element={<ProductSubCategoryPage />} />
+                <Route path="/searchByProduct/:searchKey" element={<SearchPage />} />
             </Routes>
         </>
     )
