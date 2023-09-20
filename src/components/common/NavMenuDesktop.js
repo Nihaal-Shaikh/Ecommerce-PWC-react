@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Navbar, Container, Row, Col, Button } from "react-bootstrap";
 import Logo from "../../assets/images/easyshop.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate   } from "react-router-dom";
 import MegaMenuAll from '../home/MegaMenuAll';
 import Bars from "../../assets/images/bars.png"
 
@@ -9,6 +9,8 @@ function NavMenuDesktop() {
 
     const [sideNavState, setSideNavState] = useState('sideNavClose');
     const [contentOverState, setContentOverState] = useState('ContentOverlayClose');
+    const [searchKey, setSearchKey] = useState('');
+    const navigate = useNavigate();
   
     const sideNavOpenClose = () => {
       if (sideNavState === 'sideNavOpen') {
@@ -18,6 +20,17 @@ function NavMenuDesktop() {
         setSideNavState('sideNavOpen');
         setContentOverState('ContentOverlayOpen');
       }
+    };
+
+    const searchOnChange = (event) => {
+        setSearchKey(event.target.value);
+    };
+
+    const onSearch = () => {
+        if(searchKey.length >= 2) {
+            navigate(`/searchByProduct/${searchKey}`);
+            setSearchKey('');
+        }
     };
     
     return (
@@ -32,8 +45,8 @@ function NavMenuDesktop() {
                             </Col>
                             <Col className='p-1 mt-1' lg={4} md={4} sm={12} xs={12}>
                                 <div className='input-group w-100'>
-                                    <input type="text" className='form-control' />
-                                    <Button type='button' className='btn site-btn'>
+                                    <input onChange={searchOnChange} type="text" value={searchKey} className='form-control' />
+                                    <Button onClick={onSearch} type='button' className='btn site-btn'>
                                         <i className='fa fa-search' />
                                     </Button>
                                 </div>
@@ -53,13 +66,12 @@ function NavMenuDesktop() {
                     </Container>
                 </Navbar>
             </div>
-            
             <div className={sideNavState}>
-                            <MegaMenuAll />
-                    </div>
-                    <div onClick={sideNavOpenClose} className={contentOverState}>
+                <MegaMenuAll />
+            </div>
+            <div onClick={sideNavOpenClose} className={contentOverState}>
 
-                    </div>
+            </div>
         </>
     )
 }
