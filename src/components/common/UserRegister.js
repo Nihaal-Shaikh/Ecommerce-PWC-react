@@ -20,7 +20,7 @@ function UserRegister() {
                                 <Button className='btn btn-block m-2 site-btn-login'>Sign Up</Button>
                                 <br /><br />
                                 <hr />
-                                <Link><b>Forgot your password?</b></Link>
+                                <Link to='/forgotPassword'><b>Forgot your password?</b></Link>
                                 <br /><br />
                                 <Link to='/login'><b>Already have an account?</b></Link>
                             </Form>
