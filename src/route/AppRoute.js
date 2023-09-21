@@ -14,6 +14,7 @@ import AboutPage from '../pages/AboutPage'
 import ProductCategoryPage from '../pages/ProductCategoryPage'
 import ProductSubCategoryPage from '../pages/ProductSubCategoryPage'
 import SearchPage from '../pages/SearchPage'
+import UserRegisterPage from '../pages/UserRegisterPage'
 
 function AppRoute() {
     return (
@@ -21,6 +22,7 @@ function AppRoute() {
             <Routes>
                 <Route path="/" element={<Homepage />} />
                 <Route path="/login" element={<UserLoginPage />} />
+                <Route path="/register" element={<UserRegisterPage />} />
                 <Route path="/contact" element={<ContactPage />} />
                 <Route path="/purchase" element={<PurchasePage />} />
                 <Route path="/privacy" element={<PrivacyPage />} />
