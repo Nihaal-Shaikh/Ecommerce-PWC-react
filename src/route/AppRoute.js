@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Homepage from '../pages/Homepage'
 import { Route, Routes } from 'react-router'
 import UserLoginPage from '../pages/UserLoginPage'
@@ -18,17 +18,36 @@ import UserRegisterPage from '../pages/UserRegisterPage'
 import ForgotPasswordPage from '../pages/ForgotPasswordPage'
 import ResetPasswordPage from '../pages/ResetPasswordPage'
 import ProfilePage from '../pages/ProfilePage'
+import { useEffect } from 'react'
+import axios from 'axios'
+import AppUrl from '../Api/AppUrl'
+import NavMenuDesktop from '../components/common/NavMenuDesktop'
 
 function AppRoute() {
+
+    const [user, setUser] = useState({});
+
+    useEffect(() => {
+        axios.get(AppUrl.userData)
+          .then((response) => {
+            setUser(response.data);
+          })
+          .catch((error) => {
+            // Handle error
+          });
+      }, []);
+    
+
     return (
         <>
+        <NavMenuDesktop user={user} setUser={setUser} />
             <Routes>
                 <Route path="/" element={<Homepage />} />
                 <Route path="/login" element={<UserLoginPage />} />
                 <Route path="/register" element={<UserRegisterPage />} />
                 <Route path="/forgotPassword" element={<ForgotPasswordPage />} />
                 <Route path="/resetPassword/:id" element={<ResetPasswordPage />} />
-                <Route path="/profile" element={<ProfilePage />} />
+                <Route path="/profile" user={user} setUser={setUser} element={<ProfilePage />} />
                 <Route path="/contact" element={<ContactPage />} />
                 <Route path="/purchase" element={<PurchasePage />} />
                 <Route path="/privacy" element={<PrivacyPage />} />
