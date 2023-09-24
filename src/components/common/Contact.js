@@ -5,6 +5,7 @@ import AppUrl from '../../Api/AppUrl';
 import { Validation } from '../../Validation/Validation';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 function Contact() {
 
     const [name, setName] = useState('');
