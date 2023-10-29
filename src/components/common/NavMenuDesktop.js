@@ -5,12 +5,13 @@ import { Link, useNavigate   } from "react-router-dom";
 import MegaMenuAll from '../home/MegaMenuAll';
 import Bars from "../../assets/images/bars.png"
 
-function NavMenuDesktop() {
+function NavMenuDesktop(props) {
 
     const [sideNavState, setSideNavState] = useState('sideNavClose');
     const [contentOverState, setContentOverState] = useState('ContentOverlayClose');
     const [searchKey, setSearchKey] = useState('');
     const navigate = useNavigate();
+    const isLoggedIn = localStorage.getItem('token');
   
     const sideNavOpenClose = () => {
       if (sideNavState === 'sideNavOpen') {
@@ -58,8 +59,25 @@ function NavMenuDesktop() {
                                 <Link to="/notification" className='btn'>
                                     <i className='fa h4 fa-bell'></i><sup><span className='badge text-white bg-danger'>5</span></sup>
                                 </Link>
-                                <Link to="/login" className='h4 btn'>Login</Link>
-                                <Link to="/register" className='h4 btn'>Register</Link>
+                                {isLoggedIn ? (
+                                    <>
+                                        <Link to="/profile" className="h4 btn">
+                                            PROFILE
+                                        </Link>
+                                        <Link to="/login" className="h4 btn">
+                                            LOGOUT
+                                        </Link>
+                                    </>
+                                ) : (
+                                    <>
+                                        <Link to="/login" className="h4 btn">
+                                            LOGIN
+                                        </Link>
+                                        <Link to="/register" className="h4 btn">
+                                            REGISTER
+                                        </Link>
+                                    </>
+                                )}
                                 <Link to="/cart" className="cart-btn"><i className="fa fa-shopping-cart"></i> 3 Items </Link>
                             </Col>
                         </Row>
