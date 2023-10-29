@@ -43,8 +43,8 @@ function AppRoute() {
         <NavMenuDesktop user={user} setUser={setUser} />
             <Routes>
                 <Route path="/" element={<Homepage />} />
-                <Route path="/login" element={<UserLoginPage />} />
-                <Route path="/register" element={<UserRegisterPage />} />
+                <Route path="/login" element={<UserLoginPage user={user} setUser={setUser} />} />
+                <Route path="/register" element={<UserRegisterPage user={user} setUser={setUser} />} />
                 <Route path="/forgotPassword" element={<ForgotPasswordPage />} />
                 <Route path="/resetPassword/:id" element={<ResetPasswordPage />} />
                 <Route path="/profile" element={<ProfilePage user={user} setUser={setUser} />} />

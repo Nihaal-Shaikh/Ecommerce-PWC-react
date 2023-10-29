@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import AppUrl from '../../Api/AppUrl';
 import axios from 'axios';
 
-function UserRegister() {
+function UserRegister(props) {
     
     const navigate = useNavigate();
     
@@ -30,7 +30,7 @@ function UserRegister() {
             .then(response => {
                 localStorage.setItem('token', response.data.token);
                 setIsLoggedIn(true);
-
+                props.setUser(response.data.user);
             }).catch(error => {
 
             });
@@ -40,7 +40,6 @@ function UserRegister() {
         
         if (isLoggedIn) {
             navigate('/profile');
-            window.location.reload();
         }
         
     }, [isLoggedIn])

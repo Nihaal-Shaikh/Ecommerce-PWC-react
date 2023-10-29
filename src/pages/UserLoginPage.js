@@ -5,11 +5,14 @@ import FooterDesktop from '../components/common/FooterDesktop';
 import FooterMobile from '../components/common/FooterMobile';
 import UserLogin from '../components/common/UserLogin';
 
-function UserLoginPage() {
+function UserLoginPage(props) {
 
     useEffect(() => {
         window.scroll(0, 0);
     }, []);
+
+    const setUser = props.setUser;
+    const user = props.user;
 
     return (
         <>
@@ -19,7 +22,7 @@ function UserLoginPage() {
             <div className='Mobile'>
                 <NavMenuMobile />
             </div>
-            <UserLogin />
+            <UserLogin setUser={setUser} user={user} />
             <div className='Desktop'>
                 <FooterDesktop />
             </div>

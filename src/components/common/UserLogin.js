@@ -6,7 +6,7 @@ import axios from 'axios';
 import AppUrl from '../../Api/AppUrl';
 import { useEffect } from 'react';
 
-function UserLogin() {
+function UserLogin(props) {
 
     const navigate = useNavigate();
 
@@ -27,7 +27,7 @@ function UserLogin() {
             .then(response => {
                 localStorage.setItem('token', response.data.token);
                 setIsLoggedIn(true);
-
+                props.setUser(response.data.user);
             }).catch(error => {
 
             });
@@ -37,7 +37,6 @@ function UserLogin() {
         
         if (isLoggedIn) {
             navigate('/profile');
-            window.location.reload();
         }
         
     }, [isLoggedIn])
