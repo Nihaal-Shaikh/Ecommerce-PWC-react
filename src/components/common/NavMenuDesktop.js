@@ -33,6 +33,10 @@ function NavMenuDesktop(props) {
             setSearchKey('');
         }
     };
+
+    const handleLogout = () => {
+        localStorage.clear();
+    }
     
     return (
         <>
@@ -64,7 +68,7 @@ function NavMenuDesktop(props) {
                                         <Link to="/profile" className="h4 btn">
                                             PROFILE
                                         </Link>
-                                        <Link to="/login" className="h4 btn">
+                                        <Link to="/" onClick={handleLogout} className="h4 btn">
                                             LOGOUT
                                         </Link>
                                     </>
