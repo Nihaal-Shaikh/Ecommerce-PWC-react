@@ -47,7 +47,7 @@ function AppRoute() {
                 <Route path="/register" element={<UserRegisterPage />} />
                 <Route path="/forgotPassword" element={<ForgotPasswordPage />} />
                 <Route path="/resetPassword/:id" element={<ResetPasswordPage />} />
-                <Route path="/profile" user={user} setUser={setUser} element={<ProfilePage />} />
+                <Route path="/profile" element={<ProfilePage user={user} setUser={setUser} />} />
                 <Route path="/contact" element={<ContactPage />} />
                 <Route path="/purchase" element={<PurchasePage />} />
                 <Route path="/privacy" element={<PrivacyPage />} />

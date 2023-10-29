@@ -5,11 +5,13 @@ import FooterDesktop from '../components/common/FooterDesktop';
 import FooterMobile from '../components/common/FooterMobile';
 import UserProfile from '../components/common/UserProfile';
 
-function ProfilePage() {
+function ProfilePage(props) {
 
     useEffect(() => {
         window.scroll(0, 0);
     }, []);
+
+    const user = props.user;
 
   return (
     <>
@@ -19,7 +21,7 @@ function ProfilePage() {
         <div className='Mobile'>
             <NavMenuMobile />
         </div>
-        <UserProfile />
+        <UserProfile user={user} />
         <div className='Desktop'>
             <FooterDesktop />
         </div>

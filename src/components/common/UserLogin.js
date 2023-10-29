@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 import AppUrl from '../../Api/AppUrl';
 import { useEffect } from 'react';
+import UserProfile from './UserProfile';
 
 function UserLogin() {
 
@@ -25,8 +26,8 @@ function UserLogin() {
         }
 
         axios.post(AppUrl.userLogin, data)
-            .then(resonse => {
-                localStorage.setItem('token', resonse.data.token);
+            .then(response => {
+                localStorage.setItem('token', response.data.token);
                 setIsLoggedIn(true);
 
             }).catch(error => {
@@ -37,7 +38,8 @@ function UserLogin() {
     useEffect(() => {
         
         if (isLoggedIn) {
-            return navigate('/profile')
+            navigate('/profile');
+            window.location.reload();
         }
         
     }, [isLoggedIn])
