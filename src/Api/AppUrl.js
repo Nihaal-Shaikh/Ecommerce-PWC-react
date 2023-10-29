@@ -32,6 +32,8 @@ const userLogin = `${getBaseURL}/login`;
 
 const userData = `${getBaseURL}/user`;
 
+const userRegister = `${getBaseURL}/register`;
+
 const AppUrl = {
     getBaseURL,
     getVisitorDetailsURL,
@@ -46,7 +48,8 @@ const AppUrl = {
     notificationHistory,
     SearchByProduct,
     userLogin,
-    userData
+    userData,
+    userRegister
 };
 
 export default AppUrl;

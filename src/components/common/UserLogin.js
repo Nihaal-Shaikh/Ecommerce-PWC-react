@@ -5,7 +5,6 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 import AppUrl from '../../Api/AppUrl';
 import { useEffect } from 'react';
-import UserProfile from './UserProfile';
 
 function UserLogin() {
 
@@ -13,7 +12,6 @@ function UserLogin() {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [message, setMessage] = useState('');
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const handleLogin = (e) => {
