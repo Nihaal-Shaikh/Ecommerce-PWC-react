@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useNavigate } from 'react-router';
 
 function UserProfile(props) {
+  
+  const navigate = useNavigate();
   let name = '';
   let email = '';
 
@@ -8,6 +11,12 @@ function UserProfile(props) {
     name = props.user.name;
     email = props.user.email;
   }
+
+  useEffect(() => {
+    if(!localStorage.getItem('token')) {
+      navigate('/login');
+    }
+  }, []);
 
   return (
     <>

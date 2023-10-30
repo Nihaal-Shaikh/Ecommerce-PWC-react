@@ -42,7 +42,13 @@ function UserRegister(props) {
             navigate('/profile');
         }
         
-    }, [isLoggedIn])
+    }, [isLoggedIn]);
+
+    useEffect(() => {
+        if(localStorage.getItem('token')) {
+          navigate('/profile');
+        }
+    }, []);
 
   return (
     <>

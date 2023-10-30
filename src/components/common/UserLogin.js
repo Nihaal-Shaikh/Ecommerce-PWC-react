@@ -41,8 +41,11 @@ function UserLogin(props) {
         
     }, [isLoggedIn])
 
-
-
+    useEffect(() => {
+        if(localStorage.getItem('token')) {
+          navigate('/profile');
+        }
+      }, []);
 
     return (
         <>
