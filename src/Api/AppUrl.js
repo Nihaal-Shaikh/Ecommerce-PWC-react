@@ -36,6 +36,8 @@ const userRegister = `${getBaseURL}/register`;
 
 const forgotPassword = `${getBaseURL}/forgotPassword`;
 
+const resetPassword = `${getBaseURL}/resetPassword`;
+
 const AppUrl = {
     getBaseURL,
     getVisitorDetailsURL,
@@ -52,7 +54,8 @@ const AppUrl = {
     userLogin,
     userData,
     userRegister,
-    forgotPassword
+    forgotPassword,
+    resetPassword
 };
 
 export default AppUrl;
