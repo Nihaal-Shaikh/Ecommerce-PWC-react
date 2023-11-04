@@ -3,6 +3,8 @@ import { Container, Row, Col } from 'react-bootstrap';
 import Select from 'react-select';
 import { Link } from "react-router-dom";
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
+import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css';
+import InnerImageZoom from 'react-inner-image-zoom';
 
 function ProductDetails(props) {
 
@@ -14,6 +16,7 @@ function ProductDetails(props) {
     const [selectedColor, setSelectedColor] = useState(null);
     const [selectedSize, setSelectedSize] = useState(null);
     const [selectedQuantity, setSelectedQuantity] = useState(null);
+    const [previewImage, setPreviewImage] = useState('0');
     const quantityArray = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
     const quantityOptions = quantityArray.map((QuantityList) => ({
         value: QuantityList,
@@ -43,8 +46,13 @@ function ProductDetails(props) {
 
     const imgOnClick = (event) => {
         const imgSrc = event.target.getAttribute('src');
-        setMainImage(imgSrc);
+        // setMainImage(imgSrc);
+        setPreviewImage(imgSrc);
     };
+
+    if (previewImage === '0') {
+        setPreviewImage(productData['productList'][0]['image']);
+    }
 
     return (
         <>
@@ -61,7 +69,7 @@ function ProductDetails(props) {
                     <Col className="shadow-sm bg-white pb-3 mt-4" md={12} lg={12} sm={12} xs={12}>
                         <Row>
                             <Col className="p-3" md={6} lg={6} sm={12} xs={12}>
-                                <img className="bigImage" src={mainImage} />
+                                <InnerImageZoom className='detailImage' zoomScale={1.8} zoomType={'hover'} src={previewImage} zoomSrc={previewImage} />
                                 <Container className="my-3">
                                     <Row>
                                         <Col className="p-0 m-0" md={3} lg={3} sm={3} xs={3}>
