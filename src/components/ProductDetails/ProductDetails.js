@@ -3,6 +3,8 @@ import { Container, Row, Col } from 'react-bootstrap';
 import Select from 'react-select';
 import { Link } from "react-router-dom";
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
+import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css';
+import InnerImageZoom from 'react-inner-image-zoom';
 
 function ProductDetails(props) {
 
@@ -62,6 +64,9 @@ function ProductDetails(props) {
                         <Row>
                             <Col className="p-3" md={6} lg={6} sm={12} xs={12}>
                                 <img className="bigImage" src={mainImage} />
+                                <div className='bigImage'>
+                                <InnerImageZoom zoomScale={1.8} zoomType={'hover'} src={mainImage} zoomSrc={mainImage} />
+                                </div>
                                 <Container className="my-3">
                                     <Row>
                                         <Col className="p-0 m-0" md={3} lg={3} sm={3} xs={3}>
