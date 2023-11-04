@@ -5,10 +5,13 @@ import { Link } from "react-router-dom";
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css';
 import InnerImageZoom from 'react-inner-image-zoom';
+import SuggestedProducts from './SuggestedProducts';
+import ProductReviewList from './ProductReviewList';
 
 function ProductDetails(props) {
 
     const productData = props.data;
+    const product_id = productData['productDetails'][0]['product_id'];
     const title = productData['productList'][0]['title'];
     const category = productData['productList'][0]['category'];
     const subcategory = productData['productList'][0]['subcategory'];
@@ -62,7 +65,7 @@ function ProductDetails(props) {
                         <Breadcrumb.Item><Link to="/">Home</Link></Breadcrumb.Item>
                         <Breadcrumb.Item><Link to={"/productCategory/" + category}>{category}</Link></Breadcrumb.Item>
                         <Breadcrumb.Item><Link to={"/productSubCategory/" + category + '/' + subcategory}>{subcategory}</Link></Breadcrumb.Item>
-                        <Breadcrumb.Item><Link to={"/productDetails/" + productData['productDetails'][0]['product_id']}>{title}</Link></Breadcrumb.Item>
+                        <Breadcrumb.Item><Link to={"/productDetails/" + product_id}>{title}</Link></Breadcrumb.Item>
                     </Breadcrumb>
                 </div>
                 <Row className="p-2">
@@ -144,22 +147,14 @@ function ProductDetails(props) {
                             </Col>
 
                             <Col className="" md={6} lg={6} sm={12} xs={12}>
-                                <h6 className="mt-2">REVIEWS</h6>
-                                <p className=" p-0 m-0"><span className="Review-Title">Kazi Ariyan</span> <span className="text-success"><i className="fa fa-star"></i> <i className="fa fa-star"></i> <i className="fa fa-star"></i> <i className="fa fa-star"></i> </span> </p>
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-
-                                <p className=" p-0 m-0"><span className="Review-Title">Kazi Ariyan</span> <span className="text-success"><i className="fa fa-star"></i> <i className="fa fa-star"></i> <i className="fa fa-star"></i> <i className="fa fa-star"></i> </span> </p>
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-
-                                <p className=" p-0 m-0"><span className="Review-Title">Kazi Ariyan</span> <span className="text-success"><i className="fa fa-star"></i> <i className="fa fa-star"></i> <i className="fa fa-star"></i> <i className="fa fa-star"></i> </span> </p>
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-
+                                <ProductReviewList id={product_id} />
                             </Col>
                         </Row>
 
                     </Col>
                 </Row>
             </Container>
+            <SuggestedProducts subcategory={subcategory} />
         </>
     )
 }
