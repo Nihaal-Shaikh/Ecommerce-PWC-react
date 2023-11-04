@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css';
 import InnerImageZoom from 'react-inner-image-zoom';
+import SuggestedProducts from './SuggestedProducts';
 
 function ProductDetails(props) {
 
@@ -160,6 +161,7 @@ function ProductDetails(props) {
                     </Col>
                 </Row>
             </Container>
+            <SuggestedProducts subcategory={subcategory} />
         </>
     )
 }

@@ -45,7 +45,6 @@ function ProductDetailPage() {
             ) : (
                 <>
                     <ProductDetails data={productData} />
-                    <SuggestedProducts />
                 </>
             )}
             <div className='Desktop'>

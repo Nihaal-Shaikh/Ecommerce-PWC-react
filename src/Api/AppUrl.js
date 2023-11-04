@@ -38,6 +38,10 @@ const forgotPassword = `${getBaseURL}/forgotPassword`;
 
 const resetPassword = `${getBaseURL}/resetPassword`;
 
+function SimilarProducts(code) {
+  return `${getBaseURL}/similar/${code}`;
+}
+
 const AppUrl = {
     getBaseURL,
     getVisitorDetailsURL,
@@ -55,7 +59,8 @@ const AppUrl = {
     userData,
     userRegister,
     forgotPassword,
-    resetPassword
+    resetPassword,
+    SimilarProducts
 };
 
 export default AppUrl;
