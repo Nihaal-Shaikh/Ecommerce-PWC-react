@@ -69,10 +69,7 @@ function ProductDetails(props) {
                     <Col className="shadow-sm bg-white pb-3 mt-4" md={12} lg={12} sm={12} xs={12}>
                         <Row>
                             <Col className="p-3" md={6} lg={6} sm={12} xs={12}>
-                                {/* <img className="bigImage" src={mainImage} /> */}
-                                <div className=''>
-                                <InnerImageZoom zoomScale={1.8} zoomType={'hover'} src={previewImage} zoomSrc={previewImage} />
-                                </div>
+                                <InnerImageZoom className='detailImage' zoomScale={1.8} zoomType={'hover'} src={previewImage} zoomSrc={previewImage} />
                                 <Container className="my-3">
                                     <Row>
                                         <Col className="p-0 m-0" md={3} lg={3} sm={3} xs={3}>
