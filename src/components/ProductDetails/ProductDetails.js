@@ -16,6 +16,7 @@ function ProductDetails(props) {
     const [selectedColor, setSelectedColor] = useState(null);
     const [selectedSize, setSelectedSize] = useState(null);
     const [selectedQuantity, setSelectedQuantity] = useState(null);
+    const [previewImage, setPreviewImage] = useState('0');
     const quantityArray = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
     const quantityOptions = quantityArray.map((QuantityList) => ({
         value: QuantityList,
@@ -45,8 +46,13 @@ function ProductDetails(props) {
 
     const imgOnClick = (event) => {
         const imgSrc = event.target.getAttribute('src');
-        setMainImage(imgSrc);
+        // setMainImage(imgSrc);
+        setPreviewImage(imgSrc);
     };
+
+    if (previewImage === '0') {
+        setPreviewImage(productData['productList'][0]['image']);
+    }
 
     return (
         <>
@@ -63,9 +69,9 @@ function ProductDetails(props) {
                     <Col className="shadow-sm bg-white pb-3 mt-4" md={12} lg={12} sm={12} xs={12}>
                         <Row>
                             <Col className="p-3" md={6} lg={6} sm={12} xs={12}>
-                                <img className="bigImage" src={mainImage} />
-                                <div className='bigImage'>
-                                <InnerImageZoom zoomScale={1.8} zoomType={'hover'} src={mainImage} zoomSrc={mainImage} />
+                                {/* <img className="bigImage" src={mainImage} /> */}
+                                <div className=''>
+                                <InnerImageZoom zoomScale={1.8} zoomType={'hover'} src={previewImage} zoomSrc={previewImage} />
                                 </div>
                                 <Container className="my-3">
                                     <Row>
