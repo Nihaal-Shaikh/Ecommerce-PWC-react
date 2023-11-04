@@ -28,6 +28,16 @@ function SearchByProduct(searchKey) {
   return `${getBaseURL}/search/${searchKey}`;
 }
 
+const userLogin = `${getBaseURL}/login`;
+
+const userData = `${getBaseURL}/user`;
+
+const userRegister = `${getBaseURL}/register`;
+
+const forgotPassword = `${getBaseURL}/forgotPassword`;
+
+const resetPassword = `${getBaseURL}/resetPassword`;
+
 const AppUrl = {
     getBaseURL,
     getVisitorDetailsURL,
@@ -40,7 +50,12 @@ const AppUrl = {
     allSlider,
     ProductDetails,
     notificationHistory,
-    SearchByProduct
+    SearchByProduct,
+    userLogin,
+    userData,
+    userRegister,
+    forgotPassword,
+    resetPassword
 };
 
 export default AppUrl;
