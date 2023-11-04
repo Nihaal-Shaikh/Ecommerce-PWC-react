@@ -42,6 +42,10 @@ function SimilarProducts(code) {
   return `${getBaseURL}/similar/${code}`;
 }
 
+function ProductReviewList(id) {
+  return `${getBaseURL}/productReview/${id}`;
+}
+
 const AppUrl = {
     getBaseURL,
     getVisitorDetailsURL,
@@ -60,7 +64,8 @@ const AppUrl = {
     userRegister,
     forgotPassword,
     resetPassword,
-    SimilarProducts
+    SimilarProducts,
+    ProductReviewList
 };
 
 export default AppUrl;
