@@ -46,6 +46,8 @@ function ProductReviewList(id) {
   return `${getBaseURL}/productReview/${id}`;
 }
 
+const addToCart = `${getBaseURL}/addToCart`;
+
 const AppUrl = {
     getBaseURL,
     getVisitorDetailsURL,
@@ -65,7 +67,8 @@ const AppUrl = {
     forgotPassword,
     resetPassword,
     SimilarProducts,
-    ProductReviewList
+    ProductReviewList,
+    addToCart
 };
 
 export default AppUrl;

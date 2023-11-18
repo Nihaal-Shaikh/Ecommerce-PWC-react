@@ -7,6 +7,9 @@ import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css';
 import InnerImageZoom from 'react-inner-image-zoom';
 import SuggestedProducts from './SuggestedProducts';
 import ProductReviewList from './ProductReviewList';
+import cogoToast from 'cogo-toast';
+import axios from 'axios';
+import AppUrl from '../../Api/AppUrl';
 
 function ProductDetails(props) {
 
@@ -25,6 +28,14 @@ function ProductDetails(props) {
         value: QuantityList,
         label: QuantityList
     }));
+    const[isSize, setIsSize] =  useState('');
+    const[isColour, setIsColour] =  useState('');
+    const[colour, setColour] =  useState('');
+    const[size, setSize] =  useState('');
+    const[quantity, setQuantity] =  useState('');
+    const [productCode, setProductCode] = useState('');
+    const [addToCart, setAddToCart] = useState('Add To Cart');
+
 
     let colorOptions = [];
 
@@ -49,12 +60,69 @@ function ProductDetails(props) {
 
     const imgOnClick = (event) => {
         const imgSrc = event.target.getAttribute('src');
-        // setMainImage(imgSrc);
         setPreviewImage(imgSrc);
+    };
+
+    if(isSize == '') {
+        if(!sizeOptions.length > 0) {
+            setIsSize('No');
+        } else {
+            setIsSize('Yes');
+        }
+    }
+
+    if(isColour == '') {
+        if(!colorOptions.length > 0) {
+            setIsColour('No');
+        } else {
+            setIsColour('Yes');
+        }
+    }
+
+    const AddToCart = () => {
+        if(isColour === 'Yes' && colour.length === 0) {
+            cogoToast.error('Please select a colour.', {position:'top-right'});
+        } else if(isSize === 'Yes' && size.length === 0) {
+            cogoToast.error('Please select a size.', {position:'top-right'});
+        } else if(quantity.length === 0) {
+            cogoToast.error('Please select a quantity.', {position:'top-right'});
+        } else if(!localStorage.getItem('token')) {
+            cogoToast.warn('Please login first', {position:'top-right'});
+        } else {
+            setAddToCart('Adding...');
+            
+            let myFormData = new FormData();
+
+            myFormData.append('colour', colour.value);
+            myFormData.append('size', size.value);
+            myFormData.append('quantity', quantity.value);
+            myFormData.append('product_code', productCode);
+            myFormData.append('email', props.user.email);
+
+            axios.post(AppUrl.addToCart, myFormData)
+                .then(response => {
+                    if(response.data === 1) {
+                        cogoToast.success('Product added successfully.', {position: 'top-right'});
+                        setAddToCart('Add To Cart');
+                    } else {
+                        cogoToast.error('Your request was not successful.', {position: 'top-right'});
+                        setAddToCart('Add To Cart');
+                    }
+                })
+                .catch(error => {
+                    cogoToast.error('Your request was not successful.', {position: 'top-right'});
+                    setAddToCart('Add To Cart');
+                });
+
+        }
     };
 
     if (previewImage === '0') {
         setPreviewImage(productData['productList'][0]['image']);
+    }
+
+    if(productCode == '') {
+        setProductCode(productData['productList'][0]['product_code']);
     }
 
     return (
@@ -108,8 +176,8 @@ function ProductDetails(props) {
                                     <h6 className="mt-2"> Choose Color </h6>
                                     <Select
                                         options={colorOptions}
-                                        value={selectedColor}
-                                        onChange={(value) => setSelectedColor(value)}
+                                        value={colour}
+                                        onChange={(selectedOption) => {setColour(selectedOption)}}
                                         placeholder="Choose Color"
                                     />
                                 </div>
@@ -117,8 +185,8 @@ function ProductDetails(props) {
                                     <h6 className="mt-2"> Choose Size </h6>
                                     <Select
                                         options={sizeOptions}
-                                        value={selectedSize}
-                                        onChange={(value) => setSelectedSize(value)}
+                                        value={size}
+                                        onChange={(selectedOption) => setSize(selectedOption)}
                                         placeholder="Choose Size"
                                     />
                                 </div>
@@ -126,14 +194,14 @@ function ProductDetails(props) {
                                     <h6 className="mt-2">Choose Quantity</h6>
                                     <Select
                                         options={quantityOptions}
-                                        value={selectedQuantity}
-                                        onChange={(value) => setSelectedQuantity(value)}
+                                        value={quantity}
+                                        onChange={(selectedOption) => setQuantity(selectedOption)}
                                         placeholder="Choose Quantity"
                                     />
                                 </div>
 
                                 <div className="input-group mt-3" style={{ zIndex: 0 }}>
-                                    <button className="btn site-btn m-1 "> <i className="fa fa-shopping-cart"></i>  Add To Cart</button>
+                                    <button onClick={AddToCart} className="btn site-btn m-1 "> <i className="fa fa-shopping-cart"></i>{addToCart}</button>
                                     <button className="btn btn-primary m-1"> <i className="fa fa-car"></i> Order Now</button>
                                     <button className="btn btn-primary m-1"> <i className="fa fa-heart"></i> Favourite</button>
                                 </div>

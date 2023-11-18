@@ -10,9 +10,10 @@ import axios from 'axios';
 import AppUrl from '../Api/AppUrl';
 import HomeSliderLoading from '../components/Placeholder/HomeSliderLoading';
 
-function ProductDetailPage() {
+function ProductDetailPage(props) {
 
     const { id } = useParams();
+    const user = props.user;
     const [productData, setProductData] = useState([]);
     const [loaderDiv, setLoaderDiv] = useState('');
     const [mainDiv, setMainDiv] = useState('d-none');
@@ -44,7 +45,7 @@ function ProductDetailPage() {
                 <HomeSliderLoading loaderDiv={loaderDiv} />
             ) : (
                 <>
-                    <ProductDetails data={productData} />
+                    <ProductDetails data={productData} user={user} />
                 </>
             )}
             <div className='Desktop'>
