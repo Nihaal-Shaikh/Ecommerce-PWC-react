@@ -48,8 +48,12 @@ function ProductReviewList(id) {
 
 const addToCart = `${getBaseURL}/addToCart`;
 
-function CartCount(product_id) {
-  return `${getBaseURL}/cartCount/${product_id}`;
+function CartCount(product_code) {
+  return `${getBaseURL}/cartCount/${product_code}`;
+}
+
+function AddFavourite(product_code, email) {
+  return `${getBaseURL}/favourite/${product_code}/${email}`;
 }
 
 const AppUrl = {
@@ -73,7 +77,8 @@ const AppUrl = {
     SimilarProducts,
     ProductReviewList,
     addToCart,
-    CartCount
+    CartCount,
+    AddFavourite
 };
 
 export default AppUrl;
