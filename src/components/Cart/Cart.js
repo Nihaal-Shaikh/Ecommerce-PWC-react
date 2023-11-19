@@ -1,104 +1,54 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Button, Card } from "react-bootstrap";
 import Product1 from "../../assets/images/product1.png";
+import AppUrl from '../../Api/AppUrl';
+import axios from 'axios';
 
-function Cart() {
+function Cart(props) {
+
+    const user = props.user.email
+    const [productData, setProductData] = useState([]);
+
+    useEffect(() => {
+
+        axios.get(AppUrl.CartList(user))
+            .then(response => {
+                setProductData(response.data);
+            })
+            .catch(error => {
+            });
+    }, [user]);
+
     return (
         <>
             <Container>
                 <div className="section-title text-center mb-55"><h2>Product Cart List</h2>
                 </div>
                 <Row>
+                {productData.map((CartList, i) => (
                     <Col className="p-1" lg={12} md={12} sm={12} xs={12} >
                         <Card >
                             <Card.Body>
                                 <Row>
                                     <Col md={3} lg={3} sm={6} xs={6}>
-                                        <img className="cart-product-img" src={Product1} />
+                                        <img className="cart-product-img" src={CartList.image} />
                                     </Col>
 
                                     <Col md={6} lg={6} sm={6} xs={6}>
-                                        <h5 className="product-name">ASUS TUF A15 FA506IU Ryzen 7 4800H GTX</h5>
-                                        <h6> Quantity = 05 </h6>
-                                        <h6>Price = 05 x 100 = 5000$</h6>
+                                        <h5 className="product-name">{CartList.product_name}</h5>
+                                        <h6> Quantity = {CartList.quantity} </h6>
+                                        <p>Size: {CartList.size} | Colour: {CartList.colour}</p>
+                                        <h6>Price = {CartList.quantity} x {CartList.unit_price} = ${CartList.total_price}</h6>
                                     </Col>
 
                                     <Col md={3} lg={3} sm={12} xs={12}>
-                                        <input placeholder="2" className="form-control text-center" type="number" />
                                         <Button className="btn btn-block w-100 mt-3  site-btn"><i className="fa fa-trash-alt"></i> Remove </Button>
                                     </Col>
                                 </Row>
                             </Card.Body>
                         </Card>
                     </Col>
-                    <Col className="p-1" lg={12} md={12} sm={12} xs={12} >
-                        <Card >
-                            <Card.Body>
-                                <Row>
-                                    <Col md={3} lg={3} sm={6} xs={6}>
-                                        <img className="cart-product-img" src={Product1} />
-                                    </Col>
-
-                                    <Col md={6} lg={6} sm={6} xs={6}>
-                                        <h5 className="product-name">ASUS TUF A15 FA506IU Ryzen 7 4800H GTX</h5>
-                                        <h6> Quantity = 05 </h6>
-                                        <h6>Price = 05 x 100 = 5000$</h6>
-                                    </Col>
-                                    <Col md={3} lg={3} sm={12} xs={12}>
-                                        <input placeholder="2" className="form-control text-center" type="number" />
-                                        <Button className="btn btn-block w-100 mt-3  site-btn"><i className="fa fa-trash-alt"></i> Remove </Button>
-
-                                    </Col>
-                                </Row>
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                    <Col className="p-1" lg={12} md={12} sm={12} xs={12} >
-                        <Card >
-                            <Card.Body>
-                                <Row>
-                                    <Col md={3} lg={3} sm={6} xs={6}>
-                                        <img className="cart-product-img" src={Product1} />
-                                    </Col>
-
-                                    <Col md={6} lg={6} sm={6} xs={6}>
-                                        <h5 className="product-name">ASUS TUF A15 FA506IU Ryzen 7 4800H GTX</h5>
-                                        <h6> Quantity = 05 </h6>
-                                        <h6>Price = 05 x 100 = 5000$</h6>
-                                    </Col>
-
-                                    <Col md={3} lg={3} sm={12} xs={12}>
-                                        <input placeholder="2" className="form-control text-center" type="number" />
-                                        <Button className="btn btn-block w-100 mt-3  site-btn"><i className="fa fa-trash-alt"></i> Remove </Button>
-
-                                    </Col>
-                                </Row>
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                    <Col className="p-1" lg={12} md={12} sm={12} xs={12} >
-                        <Card >
-                            <Card.Body>
-                                <Row>
-                                    <Col md={3} lg={3} sm={6} xs={6}>
-                                        <img className="cart-product-img" src={Product1} />
-                                    </Col>
-
-                                    <Col md={6} lg={6} sm={6} xs={6}>
-                                        <h5 className="product-name">ASUS TUF A15 FA506IU Ryzen 7 4800H GTX</h5>
-                                        <h6> Quantity = 05 </h6>
-                                        <h6>Price = 05 x 100 = 5000$</h6>
-                                    </Col>
-
-                                    <Col md={3} lg={3} sm={12} xs={12}>
-                                        <input placeholder="2" className="form-control text-center" type="number" />
-                                        <Button className="btn btn-block w-100 mt-3  site-btn"><i className="fa fa-trash-alt"></i> Remove </Button>
-
-                                    </Col>
-                                </Row>
-                            </Card.Body>
-                        </Card>
-                    </Col>
+                ))}
                     <Col className="p-1" lg={12} md={12} sm={12} xs={12} >
                         <Card >
                             <Card.Body>

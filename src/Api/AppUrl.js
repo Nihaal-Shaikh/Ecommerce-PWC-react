@@ -64,6 +64,10 @@ function RemoveFavourite(product_code, email) {
   return `${getBaseURL}/removeFavourite/${product_code}/${email}`;
 }
 
+function CartList(email) {
+  return `${getBaseURL}/cartList/${email}`;
+}
+
 const AppUrl = {
     getBaseURL,
     getVisitorDetailsURL,
@@ -88,7 +92,8 @@ const AppUrl = {
     CartCount,
     AddFavourite,
     FavouriteList,
-    RemoveFavourite
+    RemoveFavourite,
+    CartList
 };
 
 export default AppUrl;

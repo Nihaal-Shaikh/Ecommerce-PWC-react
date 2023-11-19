@@ -55,7 +55,7 @@ function AppRoute() {
                 <Route path="/productDetails/:id" element={<ProductDetailPage user={user} setUser={setUser} />} />
                 <Route path="/notification" element={<NotificationPage />} />
                 <Route path="/favourite" element={<FavouritePage user={user} setUser={setUser} />} />
-                <Route path="/cart" element={<CartPage />} />
+                <Route path="/cart" element={<CartPage user={user} setUser={setUser} />} />
                 <Route path="/about" element={<AboutPage />} />
                 <Route path="/productCategory/:category" element={<ProductCategoryPage />} />
                 <Route path="/productSubCategory/:category/:subcategory" element={<ProductSubCategoryPage />} />

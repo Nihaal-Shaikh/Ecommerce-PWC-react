@@ -5,7 +5,9 @@ import FooterDesktop from '../components/common/FooterDesktop';
 import FooterMobile from '../components/common/FooterMobile';
 import Cart from '../components/Cart/Cart';
 
-function CartPage() {
+function CartPage(props) {
+
+    const user = props.user;
 
     useEffect(() => {
         window.scroll(0, 0);
@@ -19,7 +21,7 @@ function CartPage() {
         <div className='Mobile'>
             <NavMenuMobile />
         </div>
-        <Cart />
+        <Cart user={user} />
         <div className='Desktop'>
             <FooterDesktop />
         </div>
