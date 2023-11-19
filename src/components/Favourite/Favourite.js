@@ -2,9 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import AppUrl from '../../Api/AppUrl';
 import axios from 'axios';
+import { useNavigate } from 'react-router';
 import cogoToast from 'cogo-toast';
 
 function Favourite(props) {
+
+    const navigate = useNavigate();
 
     const user = props.user.email
     const [productData, setProductData] = useState([]);
@@ -18,6 +21,12 @@ function Favourite(props) {
             .catch(error => {
             });
     }, [user]);
+
+    useEffect(() => {
+      if(!localStorage.getItem('token')) {
+        navigate('/login');
+      }
+    }, []);
 
     const RemoveItem = (product_code) => {
 
