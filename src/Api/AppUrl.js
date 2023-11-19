@@ -56,6 +56,9 @@ function AddFavourite(product_code, email) {
   return `${getBaseURL}/favourite/${product_code}/${email}`;
 }
 
+function FavouriteList(email) {
+  return `${getBaseURL}/favouriteList/${email}`;
+}
 const AppUrl = {
     getBaseURL,
     getVisitorDetailsURL,
@@ -78,7 +81,8 @@ const AppUrl = {
     ProductReviewList,
     addToCart,
     CartCount,
-    AddFavourite
+    AddFavourite,
+    FavouriteList
 };
 
 export default AppUrl;

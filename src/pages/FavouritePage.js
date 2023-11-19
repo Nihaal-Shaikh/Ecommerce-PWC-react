@@ -5,7 +5,9 @@ import FooterDesktop from '../components/common/FooterDesktop';
 import FooterMobile from '../components/common/FooterMobile';
 import Favourite from '../components/Favourite/Favourite';
 
-function FavouritePage() {
+function FavouritePage(props) {
+
+    const user = props.user;
 
     useEffect(() => {
         window.scroll(0, 0);
@@ -19,7 +21,7 @@ function FavouritePage() {
         <div className='Mobile'>
             <NavMenuMobile />
         </div>
-        <Favourite />
+        <Favourite user={user} />
         <div className='Desktop'>
             <FooterDesktop />
         </div>
