@@ -18,7 +18,6 @@ function ProductDetailPage(props) {
     const [loaderDiv, setLoaderDiv] = useState('');
     const [mainDiv, setMainDiv] = useState('d-none');
 
-
     useEffect(() => {
 
         window.scroll(0, 0);

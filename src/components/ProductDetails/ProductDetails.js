@@ -18,10 +18,6 @@ function ProductDetails(props) {
     const title = productData['productList'][0]['title'];
     const category = productData['productList'][0]['category'];
     const subcategory = productData['productList'][0]['subcategory'];
-    const [mainImage, setMainImage] = useState(productData['productDetails'][0]['image_one']);
-    const [selectedColor, setSelectedColor] = useState(null);
-    const [selectedSize, setSelectedSize] = useState(null);
-    const [selectedQuantity, setSelectedQuantity] = useState(null);
     const [previewImage, setPreviewImage] = useState('0');
     const quantityArray = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
     const quantityOptions = quantityArray.map((QuantityList) => ({
@@ -35,7 +31,6 @@ function ProductDetails(props) {
     const[quantity, setQuantity] =  useState('');
     const [productCode, setProductCode] = useState('');
     const [addToCart, setAddToCart] = useState('Add To Cart');
-
 
     let colorOptions = [];
 
@@ -104,6 +99,7 @@ function ProductDetails(props) {
                     if(response.data === 1) {
                         cogoToast.success('Product added successfully.', {position: 'top-right'});
                         setAddToCart('Add To Cart');
+                        window.location.reload();
                     } else {
                         cogoToast.error('Your request was not successful.', {position: 'top-right'});
                         setAddToCart('Add To Cart');
