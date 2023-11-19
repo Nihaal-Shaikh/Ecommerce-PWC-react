@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navbar, Container, Row, Col, Button } from "react-bootstrap";
 import Logo from "../../assets/images/easyshop.png";
 import { Link, useNavigate   } from "react-router-dom";
 import MegaMenuAll from '../home/MegaMenuAll';
 import Bars from "../../assets/images/bars.png"
+import axios from 'axios';
+import AppUrl from '../../Api/AppUrl';
 
 function NavMenuDesktop(props) {
 
@@ -12,6 +14,19 @@ function NavMenuDesktop(props) {
     const [searchKey, setSearchKey] = useState('');
     const navigate = useNavigate();
     const isLoggedIn = localStorage.getItem('token');
+    const [cartCount, setCartCount] = useState(0);
+
+    useEffect(() => {
+        let product_code = props.product_code;
+
+        axios.get(AppUrl.CartCount(product_code))
+            .then(response => {
+                setCartCount(response.data);
+            })
+            .catch(error => {
+            });
+    }, [])
+    
   
     const sideNavOpenClose = () => {
       if (sideNavState === 'sideNavOpen') {
@@ -71,6 +86,7 @@ function NavMenuDesktop(props) {
                                         <Link to="/" onClick={handleLogout} className="h4 btn">
                                             LOGOUT
                                         </Link>
+                                        <Link to="/cart" className="cart-btn"><i className="fa fa-shopping-cart"></i> {cartCount} Items </Link>
                                     </>
                                 ) : (
                                     <>
@@ -80,9 +96,9 @@ function NavMenuDesktop(props) {
                                         <Link to="/register" className="h4 btn">
                                             REGISTER
                                         </Link>
+                                        <Link to="/cart" className="cart-btn"><i className="fa fa-shopping-cart"></i> 0 Items </Link>
                                     </>
                                 )}
-                                <Link to="/cart" className="cart-btn"><i className="fa fa-shopping-cart"></i> 3 Items </Link>
                             </Col>
                         </Row>
                     </Container>
