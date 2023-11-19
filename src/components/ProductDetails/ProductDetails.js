@@ -31,6 +31,7 @@ function ProductDetails(props) {
     const[quantity, setQuantity] =  useState('');
     const [productCode, setProductCode] = useState('');
     const [addToCart, setAddToCart] = useState('Add To Cart');
+    const [addToFav, setAddToFav] = useState('Favourite');
 
     let colorOptions = [];
 
@@ -71,6 +72,30 @@ function ProductDetails(props) {
             setIsColour('No');
         } else {
             setIsColour('Yes');
+        }
+    }
+
+    const AddToFavourite = () => {
+        setAddToFav('Adding...');
+
+        if(!localStorage.getItem('token')) {
+            cogoToast.warn('Please login first', {position:'top-right'});
+        } else {
+            console.log(productCode);
+            axios.get(AppUrl.AddFavourite(productCode, props.user.email))
+            .then(response => {
+                if(response.data === 1) {
+                    cogoToast.success('Product added successfully to favourites.', {position: 'top-right'});
+                    setAddToFav('Favourite');
+                } else {
+                    cogoToast.error('Your request was not successful.', {position: 'top-right'});
+                    setAddToFav('Favourite');
+                }
+            })
+            .catch(error => {
+                cogoToast.error('Your request was not successful.', {position: 'top-right'});
+                setAddToFav('Favourite');
+            });
         }
     }
 
@@ -199,7 +224,7 @@ function ProductDetails(props) {
                                 <div className="input-group mt-3" style={{ zIndex: 0 }}>
                                     <button onClick={AddToCart} className="btn site-btn m-1 "> <i className="fa fa-shopping-cart"></i>{addToCart}</button>
                                     <button className="btn btn-primary m-1"> <i className="fa fa-car"></i> Order Now</button>
-                                    <button className="btn btn-primary m-1"> <i className="fa fa-heart"></i> Favourite</button>
+                                    <button onClick={AddToFavourite} className="btn btn-primary m-1"> <i className="fa fa-heart"></i> {addToFav}</button>
                                 </div>
                             </Col>
                         </Row>

@@ -54,7 +54,7 @@ function AppRoute() {
                 <Route path="/refund" element={<RefundPage />} />
                 <Route path="/productDetails/:id" element={<ProductDetailPage user={user} setUser={setUser} />} />
                 <Route path="/notification" element={<NotificationPage />} />
-                <Route path="/favourite" element={<FavouritePage />} />
+                <Route path="/favourite" element={<FavouritePage user={user} setUser={setUser} />} />
                 <Route path="/cart" element={<CartPage />} />
                 <Route path="/about" element={<AboutPage />} />
                 <Route path="/productCategory/:category" element={<ProductCategoryPage />} />
