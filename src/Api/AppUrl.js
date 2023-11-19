@@ -72,6 +72,14 @@ function RemoveCartItem(id) {
   return `${getBaseURL}/removeCartItem/${id}`;
 }
 
+function CartItemPlus(id, quantity, price) {
+  return `${getBaseURL}/cartItemPlus/${id}/${quantity}/${price}`;
+}
+
+function CartItemMinus(id, quantity, price) {
+  return `${getBaseURL}/cartItemMinus/${id}/${quantity}/${price}`;
+}
+
 const AppUrl = {
     getBaseURL,
     getVisitorDetailsURL,
@@ -98,7 +106,9 @@ const AppUrl = {
     FavouriteList,
     RemoveFavourite,
     CartList,
-    RemoveCartItem
+    RemoveCartItem,
+    CartItemPlus,
+    CartItemMinus
 };
 
 export default AppUrl;

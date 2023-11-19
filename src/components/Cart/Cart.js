@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Button, Card } from "react-bootstrap";
-import Product1 from "../../assets/images/product1.png";
 import AppUrl from '../../Api/AppUrl';
 import axios from 'axios';
 import cogoToast from 'cogo-toast';
@@ -26,7 +25,47 @@ function Cart(props) {
             .then(response => {
                 if(response.data === 1) {
                     cogoToast.success('Product removed successfully from cart.', { position: 'top-right' });
-                    window.location.reload();
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 2000);
+                }else {
+                    cogoToast.error('Your request was not successful', { position: 'top-right' });
+                }
+            })
+            .catch(error => {
+                cogoToast.error('Your request was not successful', { position: 'top-right' });
+            });
+
+    }
+
+    const ItemPlus = (id, quantity, price) => {
+
+        axios.get(AppUrl.CartItemPlus(id, quantity, price))
+            .then(response => {
+                if(response.data === 1) {
+                    cogoToast.success('Product added successfully to cart.', { position: 'top-right' });
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 2000);
+                }else {
+                    cogoToast.error('Your request was not successful', { position: 'top-right' });
+                }
+            })
+            .catch(error => {
+                cogoToast.error('Your request was not successful', { position: 'top-right' });
+            });
+
+    }
+
+    const ItemMinus = (id, quantity, price) => {
+
+        axios.get(AppUrl.CartItemMinus(id, quantity, price))
+            .then(response => {
+                if(response.data === 1) {
+                    cogoToast.success('Product removed successfully from cart.', { position: 'top-right' });
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 2000);
                 }else {
                     cogoToast.error('Your request was not successful', { position: 'top-right' });
                 }
@@ -58,9 +97,10 @@ function Cart(props) {
                                         <p>Size: {CartList.size} | Colour: {CartList.colour}</p>
                                         <h6>Price = {CartList.quantity} x {CartList.unit_price} = ${CartList.total_price}</h6>
                                     </Col>
-
                                     <Col md={3} lg={3} sm={12} xs={12}>
-                                        <Button onClick={() => RemoveCartItem(CartList.id)} className="btn btn-block w-100 mt-3  site-btn"><i className="fa fa-trash-alt"></i> Remove </Button>
+                                        <Button onClick={() => ItemPlus(CartList.id, CartList.quantity, CartList.unit_price)} className="btn mt-2 mx-1 btn-lg  site-btn"><i className="fa fa-plus"></i></Button>
+                                        <Button onClick={() => ItemMinus(CartList.id, CartList.quantity, CartList.unit_price)} className="btn mt-2 mx-1 btn-lg  site-btn"><i className="fa fa-minus"></i></Button>
+                                        <Button onClick={() => RemoveCartItem(CartList.id)} className="btn mt-2 mx-1 btn-lg  site-btn"><i className="fa fa-trash-alt"></i></Button>
                                     </Col>
                                 </Row>
                             </Card.Body>
