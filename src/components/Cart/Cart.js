@@ -3,6 +3,7 @@ import { Container, Row, Col, Button, Card } from "react-bootstrap";
 import Product1 from "../../assets/images/product1.png";
 import AppUrl from '../../Api/AppUrl';
 import axios from 'axios';
+import cogoToast from 'cogo-toast';
 
 function Cart(props) {
 
@@ -18,6 +19,23 @@ function Cart(props) {
             .catch(error => {
             });
     }, [user]);
+
+    const RemoveCartItem = (id) => {
+
+        axios.get(AppUrl.RemoveCartItem(id))
+            .then(response => {
+                if(response.data === 1) {
+                    cogoToast.success('Product removed successfully from cart.', { position: 'top-right' });
+                    window.location.reload();
+                }else {
+                    cogoToast.error('Your request was not successful', { position: 'top-right' });
+                }
+            })
+            .catch(error => {
+                cogoToast.error('Your request was not successful', { position: 'top-right' });
+            });
+
+    }
 
     return (
         <>
@@ -42,7 +60,7 @@ function Cart(props) {
                                     </Col>
 
                                     <Col md={3} lg={3} sm={12} xs={12}>
-                                        <Button className="btn btn-block w-100 mt-3  site-btn"><i className="fa fa-trash-alt"></i> Remove </Button>
+                                        <Button onClick={() => RemoveCartItem(CartList.id)} className="btn btn-block w-100 mt-3  site-btn"><i className="fa fa-trash-alt"></i> Remove </Button>
                                     </Col>
                                 </Row>
                             </Card.Body>
