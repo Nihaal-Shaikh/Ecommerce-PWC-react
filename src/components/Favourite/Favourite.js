@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import AppUrl from '../../Api/AppUrl';
 import axios from 'axios';
+import cogoToast from 'cogo-toast';
 
 function Favourite(props) {
 
@@ -18,6 +19,17 @@ function Favourite(props) {
             });
     }, [user]);
 
+    const RemoveItem = (product_code) => {
+
+        axios.get(AppUrl.RemoveFavourite(product_code, user))
+            .then(response => {
+                cogoToast.success('Product removed successfully from favourites.', { position: 'top-right' });
+                window.location.reload();
+            })
+            .catch(error => {
+            });
+    }
+
   return (
     <>
         <Container className="text-center" fluid={true}>
@@ -32,7 +44,7 @@ function Favourite(props) {
                         <img className='center w-75' src={FeaturedList.image} alt="" />
                         <Card.Body>
                             <p className='product-name-on-card'>{FeaturedList.product_name}</p>
-                            <Button className='btn btn-sm'><i className='fa fa-trash-alt'> Remove</i></Button>
+                            <Button onClick={() => RemoveItem(FeaturedList.product_code)} className='btn btn-sm'><i className='fa fa-trash-alt'> Remove</i></Button>
                         </Card.Body>
                     </Card>
                 </Col>
