@@ -9,6 +9,9 @@ function Cart(props) {
 
     const user = props.user.email
     const [productData, setProductData] = useState([]);
+    const [name, setName] = useState('');
+    const [deliveryAddress, setDeliveryAddress] = useState('');
+    const [confirmBtn, setConfirmBtn] = useState('Confirm Order');
 
     useEffect(() => {
 
@@ -34,8 +37,8 @@ function Cart(props) {
       { value: 'Stripe', label: 'Stripe' }
     ];
 
-    const [selectedCity, setSelectedCity] = useState(null);
-    const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null); 
+    const [selectedCity, setSelectedCity] = useState();
+    const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(); 
 
     const totalPrice = productData.reduce((acc, CartList) => acc + CartList.total_price, 0);
 
@@ -94,6 +97,20 @@ function Cart(props) {
                 cogoToast.error('Your request was not successful', { position: 'top-right' });
             });
 
+    }
+
+    const confirmClick = () => {
+        if(!selectedCity){
+            cogoToast.error('Please select a city', { position: 'top-right' });
+        } else if(!selectedPaymentMethod){
+            cogoToast.error('Please select a payment method', { position: 'top-right' });
+        } else if(!name){
+            cogoToast.error('Please enter your name', { position: 'top-right' });
+        } else if(!deliveryAddress){
+            cogoToast.error('Please enter your delivery address', { position: 'top-right' });
+        } else {
+            
+        }
     }
 
     return (
@@ -160,17 +177,17 @@ function Cart(props) {
                                         <Col md={12} lg={12} sm={12} xs={12} className="p-1">
                                             <Form.Group>
                                                 <Form.Label>Your Name</Form.Label>
-                                                <Form.Control type="text" placeholder="" />
+                                                <Form.Control type="text" placeholder="" value={name} onChange={(e) => setName(e.target.value)} />
                                             </Form.Group>
                                         </Col>
                                         <Col md={12} lg={12} sm={12} xs={12} className="p-1">
                                             <Form.Group>
                                                 <Form.Label>Delivery Address</Form.Label>
-                                                <Form.Control as="textarea" rows={2} placeholder="" />
+                                                <Form.Control as="textarea" rows={2} placeholder="" value={deliveryAddress} onChange={(e) => setDeliveryAddress(e.target.value)} />
                                             </Form.Group>
                                         </Col>
                                         <Col md={12} lg={12} sm={12} xs={12} className="p-1">
-                                            <Button className="btn site-btn">Confirm Order</Button>
+                                            <Button onClick={confirmClick} className="btn site-btn">{confirmBtn}</Button>
                                         </Col>
                                     </Row>
                                 </Container>
