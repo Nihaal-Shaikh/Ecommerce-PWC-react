@@ -22,6 +22,7 @@ import { useEffect } from 'react'
 import axios from 'axios'
 import AppUrl from '../Api/AppUrl'
 import NavMenuDesktop from '../components/common/NavMenuDesktop'
+import OrderListPage from '../pages/OrderListPage'
 
 function AppRoute() {
 
@@ -60,6 +61,7 @@ function AppRoute() {
                 <Route path="/productCategory/:category" element={<ProductCategoryPage />} />
                 <Route path="/productSubCategory/:category/:subcategory" element={<ProductSubCategoryPage />} />
                 <Route path="/searchByProduct/:searchKey" element={<SearchPage />} />
+                <Route path="/orderList" element={<OrderListPage />} />
             </Routes>
         </>
     )

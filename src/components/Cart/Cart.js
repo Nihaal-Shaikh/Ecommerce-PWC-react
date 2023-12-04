@@ -4,8 +4,11 @@ import AppUrl from '../../Api/AppUrl';
 import axios from 'axios';
 import cogoToast from 'cogo-toast';
 import Select from 'react-select';
+import { useNavigate } from 'react-router';
 
 function Cart(props) {
+
+    const navigate = useNavigate();
 
     const user = props.user.email
     const [productData, setProductData] = useState([]);
@@ -86,9 +89,7 @@ function Cart(props) {
             .then(response => {
                 if(response.data === 1) {
                     cogoToast.success('Product removed successfully from cart.', { position: 'top-right' });
-                    setTimeout(() => {
-                        window.location.reload();
-                    }, 2000);
+                    navigate('/orderList');
                 }else {
                     cogoToast.error('Your request was not successful', { position: 'top-right' });
                 }
@@ -109,7 +110,32 @@ function Cart(props) {
         } else if(!deliveryAddress){
             cogoToast.error('Please enter your delivery address', { position: 'top-right' });
         } else {
-            
+            setConfirmBtn('Placing order...')
+            const invoice_no = new Date().getTime();
+
+            let myFormData = new FormData();
+
+            myFormData.append('city', selectedCity.value);
+            myFormData.append('payment_method', selectedPaymentMethod.value);
+            myFormData.append('name', name);
+            myFormData.append('delivery_address', deliveryAddress);
+            myFormData.append('email', user);
+            myFormData.append('invoice_no', invoice_no);
+            myFormData.append('delivery_charge', '0');
+
+            axios.post(AppUrl.cartOrder, myFormData)
+                .then(response => {
+                    if(response.data === 1) {
+                        cogoToast.success('Order confirmed.', { position: 'top-right' });
+                        setConfirmBtn('Confirm Order');
+                        navigate('/orderList');
+                    }else {
+                        cogoToast.error('Your request was not successful', { position: 'top-right' });
+                    }
+                })
+                .catch(error => {
+                    cogoToast.error('Your request was not successful', { position: 'top-right' });
+                });
         }
     }
 
