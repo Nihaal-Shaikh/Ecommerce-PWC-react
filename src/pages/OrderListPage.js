@@ -5,7 +5,9 @@ import FooterDesktop from '../components/common/FooterDesktop';
 import FooterMobile from '../components/common/FooterMobile';
 import OrderList from '../components/Cart/OrderList';
 
-function OrderListPage() {
+function OrderListPage(props) {
+
+    const user = props.user;
 
     useEffect(() => {
         window.scroll(0, 0);
@@ -19,7 +21,7 @@ function OrderListPage() {
         <div className='Mobile'>
             <NavMenuMobile />
         </div>
-        <OrderList />
+        <OrderList user={user} />
         <div className='Desktop'>
             <FooterDesktop />
         </div>
