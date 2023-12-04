@@ -82,6 +82,10 @@ function CartItemMinus(id, quantity, price) {
 
 const cartOrder = `${getBaseURL}/cartOrder`;
 
+function OrderListByUser(email) {
+  return `${getBaseURL}/orderListByUser/${email}`;
+}
+
 const AppUrl = {
     getBaseURL,
     getVisitorDetailsURL,
@@ -111,7 +115,8 @@ const AppUrl = {
     RemoveCartItem,
     CartItemPlus,
     CartItemMinus,
-    cartOrder
+    cartOrder,
+    OrderListByUser
 };
 
 export default AppUrl;

@@ -61,7 +61,7 @@ function AppRoute() {
                 <Route path="/productCategory/:category" element={<ProductCategoryPage />} />
                 <Route path="/productSubCategory/:category/:subcategory" element={<ProductSubCategoryPage />} />
                 <Route path="/searchByProduct/:searchKey" element={<SearchPage />} />
-                <Route path="/orderList" element={<OrderListPage />} />
+                <Route path="/orderList" element={<OrderListPage  user={user} setUser={setUser} />} />
             </Routes>
         </>
     )
