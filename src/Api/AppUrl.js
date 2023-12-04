@@ -64,6 +64,24 @@ function RemoveFavourite(product_code, email) {
   return `${getBaseURL}/removeFavourite/${product_code}/${email}`;
 }
 
+function CartList(email) {
+  return `${getBaseURL}/cartList/${email}`;
+}
+
+function RemoveCartItem(id) {
+  return `${getBaseURL}/removeCartItem/${id}`;
+}
+
+function CartItemPlus(id, quantity, price) {
+  return `${getBaseURL}/cartItemPlus/${id}/${quantity}/${price}`;
+}
+
+function CartItemMinus(id, quantity, price) {
+  return `${getBaseURL}/cartItemMinus/${id}/${quantity}/${price}`;
+}
+
+const cartOrder = `${getBaseURL}/cartOrder`;
+
 const AppUrl = {
     getBaseURL,
     getVisitorDetailsURL,
@@ -88,7 +106,12 @@ const AppUrl = {
     CartCount,
     AddFavourite,
     FavouriteList,
-    RemoveFavourite
+    RemoveFavourite,
+    CartList,
+    RemoveCartItem,
+    CartItemPlus,
+    CartItemMinus,
+    cartOrder
 };
 
 export default AppUrl;

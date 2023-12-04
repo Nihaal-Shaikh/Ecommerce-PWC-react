@@ -18,7 +18,6 @@ function NavMenuDesktop(props) {
 
     useEffect(() => {
         let product_code = props.product_code;
-
         axios.get(AppUrl.CartCount(product_code))
             .then(response => {
                 setCartCount(response.data);
