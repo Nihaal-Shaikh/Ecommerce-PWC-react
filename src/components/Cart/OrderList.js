@@ -25,12 +25,6 @@ function OrderList(props) {
 
   const handleShow = (event) => {
     setShow(true);
-    const nMsg = event.target.getAttribute('message');
-    const nTitle = event.target.getAttribute('title');
-    const nDate = event.target.getAttribute('date');
-    setNotificationMsg(nMsg);
-    setNotificationTitle(nTitle);
-    setNotificationDate(nDate);
   };
 
   return (
