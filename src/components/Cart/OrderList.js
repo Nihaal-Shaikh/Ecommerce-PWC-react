@@ -3,6 +3,7 @@ import AppUrl from '../../Api/AppUrl';
 import { Container, Row, Col, Button, Card, Form, Modal } from "react-bootstrap";
 import axios from 'axios';
 import Select from 'react-select';
+import cogoToast from 'cogo-toast';
 
 function OrderList(props) {
 
@@ -12,6 +13,8 @@ function OrderList(props) {
   const [selectedRating, setSelectedRating] = useState();
   const [productReview, setProductReview] = useState('');
   const [name, setName] = useState('');
+  const [selectedProductName, setSelectedProductName] = useState('');
+  const [selectedProductCode, setSelectedProductCode] = useState('');
 
   const ratingOptions = [
     { value: '1', label: '1' },
@@ -34,12 +37,48 @@ function OrderList(props) {
     setShow(false);
   };
 
-  const handleShow = (event) => {
+  const handleShow = (productName, productCode) => {
+    console.log(productCode);
+    setSelectedProductName(productName);
+    setSelectedProductCode(productCode);
     setShow(true);
   };
 
-  const postReview = () => {
+  const postReview = (productName, productCode) => {
 
+    if (!name) {
+      cogoToast.error('Please enter your name', { position: 'top-right' });
+    } else if (!selectedRating) {
+      cogoToast.error('Please select a rating', { position: 'top-right' });
+    } else if (!productReview) {
+      cogoToast.error('Please enter your review', { position: 'top-right' });
+    } else {
+
+      let myFormData = new FormData();
+
+      myFormData.append('product_name', productName);
+      myFormData.append('product_code', productCode);
+      myFormData.append('reviewer_name', name);
+      myFormData.append('reviewer_photo', '');
+      myFormData.append('reviewer_rating', selectedRating.value);
+      myFormData.append('reviewer_comment', productReview);
+
+      axios.post(AppUrl.postReview, myFormData)
+        .then(response => {
+          if (response.data === 1) {
+            cogoToast.success('Review submitted.', { position: 'top-right' });
+            setName('');
+            setSelectedRating();
+            setProductReview('');
+            handleClose();
+          } else {
+            cogoToast.error('Your request was not successful', { position: 'top-right' });
+          }
+        })
+        .catch(error => {
+          cogoToast.error('Your request was not successful', { position: 'top-right' });
+        });
+    }
   };
 
   return (
@@ -58,7 +97,7 @@ function OrderList(props) {
                   <p>{CartList.size} | {CartList.colour}</p>
                   <h6>Price = {CartList.unit_price} x {CartList.quantity} = {CartList.total_price}$</h6>
                   <h6>Status = {CartList.order_status} </h6>
-                  <Button onClick={handleShow} className="btn btn-danger">Post Review </Button>
+                  <Button onClick={() => handleShow(CartList.product_name, CartList.product_code)} className="btn btn-danger">Post Review </Button>
                   <hr></hr>
                 </Col>
               ))}
@@ -98,7 +137,7 @@ function OrderList(props) {
           </Col>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={postReview}>
+          <Button variant="secondary" onClick={() => postReview(selectedProductName, selectedProductCode)}>
             Post
           </Button>
           <Button variant="secondary" onClick={handleClose}>

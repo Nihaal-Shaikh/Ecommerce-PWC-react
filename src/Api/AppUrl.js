@@ -86,6 +86,8 @@ function OrderListByUser(email) {
   return `${getBaseURL}/orderListByUser/${email}`;
 }
 
+const postReview = `${getBaseURL}/postReview`;
+
 const AppUrl = {
     getBaseURL,
     getVisitorDetailsURL,
@@ -116,7 +118,8 @@ const AppUrl = {
     CartItemPlus,
     CartItemMinus,
     cartOrder,
-    OrderListByUser
+    OrderListByUser,
+    postReview
 };
 
 export default AppUrl;
