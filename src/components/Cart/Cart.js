@@ -41,7 +41,7 @@ function Cart(props) {
     ];
 
     const [selectedCity, setSelectedCity] = useState();
-    const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(); 
+    const [selectedPaymentMethod, setSelectedPaymentMethod] = useState();
 
     const totalPrice = productData.reduce((acc, CartList) => acc + CartList.total_price, 0);
 
