@@ -81,7 +81,6 @@ function ProductDetails(props) {
         if(!localStorage.getItem('token')) {
             cogoToast.warn('Please login first', {position:'top-right'});
         } else {
-            console.log(productCode);
             axios.get(AppUrl.AddFavourite(productCode, props.user.email))
             .then(response => {
                 if(response.data === 1) {
@@ -236,7 +235,7 @@ function ProductDetails(props) {
                             </Col>
 
                             <Col className="" md={6} lg={6} sm={12} xs={12}>
-                                <ProductReviewList id={product_id} />
+                                <ProductReviewList product_code={productCode} />
                             </Col>
                         </Row>
 

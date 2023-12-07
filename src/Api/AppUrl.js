@@ -42,8 +42,8 @@ function SimilarProducts(code) {
   return `${getBaseURL}/similar/${code}`;
 }
 
-function ProductReviewList(id) {
-  return `${getBaseURL}/productReview/${id}`;
+function ProductReviewList(product_code) {
+  return `${getBaseURL}/productReview/${product_code}`;
 }
 
 const addToCart = `${getBaseURL}/addToCart`;
