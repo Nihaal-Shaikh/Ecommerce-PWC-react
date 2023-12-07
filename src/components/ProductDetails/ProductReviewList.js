@@ -5,11 +5,11 @@ import AppUrl from '../../Api/AppUrl';
 function ProductReviewList(props) {
 
     const [reviewData, setReviewData] = useState([]);
-    const id = props.id;
+    const product_code = props.product_code;
 
     useEffect(() => {
 
-        axios.get(AppUrl.ProductReviewList(id))
+        axios.get(AppUrl.ProductReviewList(product_code))
             .then(response => {
                 setReviewData(response.data);
             })
