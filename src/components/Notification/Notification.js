@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Modal, Button } from "react-bootstrap";
 import axios from 'axios';
 import AppUrl from '../../Api/AppUrl';
+import { useNavigate } from 'react-router';
 
 function Notification() {
 
+    const navigate = useNavigate();
     const [notificationData, setNotificationData] = useState([]);
     const [loaderDiv, setLoaderDiv] = useState('');
     const [mainDiv, setMainDiv] = useState('d-none');
@@ -12,6 +14,12 @@ function Notification() {
     const [notificationMsg, setNotificationMsg] = useState('');
     const [notificationTitle, setNotificationTitle] = useState('');
     const [notificationDate, setNotificationDate] = useState('');
+
+    useEffect(() => {
+        if (!localStorage.getItem('token')) {
+          navigate('/login');
+        }
+    }, []);
 
     useEffect(() => {
         axios.get(AppUrl.notificationHistory)

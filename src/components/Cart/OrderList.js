@@ -4,9 +4,11 @@ import { Container, Row, Col, Button, Card, Form, Modal } from "react-bootstrap"
 import axios from 'axios';
 import Select from 'react-select';
 import cogoToast from 'cogo-toast';
+import { useNavigate } from 'react-router';
 
 function OrderList(props) {
 
+  const navigate = useNavigate();
   const user = props.user.email
   const [productData, setProductData] = useState([]);
   const [show, setShow] = useState(false);
@@ -23,6 +25,13 @@ function OrderList(props) {
     { value: '4', label: '4' },
     { value: '5', label: '5' },
   ];
+
+  useEffect(() => {
+    if (!localStorage.getItem('token')) {
+      navigate('/login');
+    }
+  }, []);
+
   useEffect(() => {
 
     axios.get(AppUrl.OrderListByUser(user))
