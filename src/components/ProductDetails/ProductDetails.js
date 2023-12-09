@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import Select from 'react-select';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css';
 import InnerImageZoom from 'react-inner-image-zoom';
@@ -13,6 +13,7 @@ import AppUrl from '../../Api/AppUrl';
 
 function ProductDetails(props) {
 
+    const navigate = useNavigate();
     const productData = props.data;
     const product_id = productData['productDetails'][0]['product_id'];
     const title = productData['productList'][0]['title'];
@@ -31,6 +32,7 @@ function ProductDetails(props) {
     const[quantity, setQuantity] =  useState('');
     const [productCode, setProductCode] = useState('');
     const [addToCart, setAddToCart] = useState('Add To Cart');
+    const [orderNow, setOrderNow] = useState('Order Now');
     const [addToFav, setAddToFav] = useState('Favourite');
 
     let colorOptions = [];
@@ -137,6 +139,46 @@ function ProductDetails(props) {
         }
     };
 
+    const OrderNow = () => {
+        if(isColour === 'Yes' && colour.length === 0) {
+            cogoToast.error('Please select a colour.', {position:'top-right'});
+        } else if(isSize === 'Yes' && size.length === 0) {
+            cogoToast.error('Please select a size.', {position:'top-right'});
+        } else if(quantity.length === 0) {
+            cogoToast.error('Please select a quantity.', {position:'top-right'});
+        } else if(!localStorage.getItem('token')) {
+            cogoToast.warn('Please login first', {position:'top-right'});
+        } else {
+            setOrderNow('Placing order...');
+            
+            let myFormData = new FormData();
+
+            myFormData.append('colour', colour.value);
+            myFormData.append('size', size.value);
+            myFormData.append('quantity', quantity.value);
+            myFormData.append('product_code', productCode);
+            myFormData.append('email', props.user.email);
+
+            axios.post(AppUrl.addToCart, myFormData)
+                .then(response => {
+                    if(response.data === 1) {
+                        cogoToast.success('Product added successfully.', {position: 'top-right'});
+                        setAddToCart('Order Now');
+                        navigate('/cart');
+                        
+                    } else {
+                        cogoToast.error('Your request was not successful.', {position: 'top-right'});
+                        setAddToCart('Order Now');
+                    }
+                })
+                .catch(error => {
+                    cogoToast.error('Your request was not successful.', {position: 'top-right'});
+                    setAddToCart('Order Now');
+                });
+
+        }
+    };
+
     if (previewImage === '0') {
         setPreviewImage(productData['productList'][0]['image']);
     }
@@ -222,7 +264,7 @@ function ProductDetails(props) {
 
                                 <div className="input-group mt-3" style={{ zIndex: 0 }}>
                                     <button onClick={AddToCart} className="btn site-btn m-1 "> <i className="fa fa-shopping-cart"></i>{addToCart}</button>
-                                    <button className="btn btn-primary m-1"> <i className="fa fa-car"></i> Order Now</button>
+                                    <button onClick={OrderNow} className="btn btn-primary m-1"> <i className="fa fa-car"></i>{orderNow}</button>
                                     <button onClick={AddToFavourite} className="btn btn-primary m-1"> <i className="fa fa-heart"></i> {addToFav}</button>
                                 </div>
                             </Col>

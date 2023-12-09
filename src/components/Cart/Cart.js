@@ -9,12 +9,17 @@ import { useNavigate } from 'react-router';
 function Cart(props) {
 
     const navigate = useNavigate();
-
     const user = props.user.email
     const [productData, setProductData] = useState([]);
     const [name, setName] = useState('');
     const [deliveryAddress, setDeliveryAddress] = useState('');
     const [confirmBtn, setConfirmBtn] = useState('Confirm Order');
+
+    useEffect(() => {
+        if (!localStorage.getItem('token')) {
+          navigate('/login');
+        }
+    }, []);
 
     useEffect(() => {
 
