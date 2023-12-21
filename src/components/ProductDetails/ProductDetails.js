@@ -10,6 +10,7 @@ import ProductReviewList from './ProductReviewList';
 import cogoToast from 'cogo-toast';
 import axios from 'axios';
 import AppUrl from '../../Api/AppUrl';
+import parse from 'html-react-parser';
 
 function ProductDetails(props) {
 
@@ -273,7 +274,7 @@ function ProductDetails(props) {
                         <Row>
                             <Col className="" md={6} lg={6} sm={12} xs={12}>
                                 <h6 className="mt-2">DETAILS</h6>
-                                {productData['productDetails'][0]['long_description']}
+                                {parse(productData['productDetails'][0]['long_description'])}
                             </Col>
 
                             <Col className="" md={6} lg={6} sm={12} xs={12}>
