@@ -37,16 +37,6 @@ function UserProfile(props) {
                     <p className='product-name-on-card'>Order List</p>
                   </Link>
                 </ListGroup.Item>
-                <ListGroup.Item>
-                  <Link className='text-link' to={'/orderList'}>
-                    <p className='product-name-on-card'>Order List</p>
-                  </Link>
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <Link className='text-link' to={'/orderList'}>
-                    <p className='product-name-on-card'>Order List</p>
-                  </Link>
-                </ListGroup.Item>
               </ListGroup>
             </Card>
           </Col>
