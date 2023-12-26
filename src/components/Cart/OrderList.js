@@ -103,10 +103,14 @@ function OrderList(props) {
                 <Col key={i} md={6} lg={6} sm={6} xs={6}>
                   <h5 className="product-name">{CartList.product_name}</h5>
                   <h6> Quantity = {CartList.quantity} </h6>
-                  <p>{CartList.size} | {CartList.colour}</p>
+                  {(CartList.size !== 'undefined' && CartList.colour !== 'undefined') && (
+                    <p>{CartList.size} | {CartList.colour}</p>
+                  )}
                   <h6>Price = {CartList.unit_price} x {CartList.quantity} = {CartList.total_price}$</h6>
                   <h6>Status = {CartList.order_status} </h6>
-                  <Button onClick={() => handleShow(CartList.product_name, CartList.product_code)} className="btn btn-danger">Post Review </Button>
+                  {(CartList.order_status === 'Complete') && (
+                    <Button onClick={() => handleShow(CartList.product_name, CartList.product_code)} className="btn btn-danger">Post Review </Button>
+                  )}
                   <hr></hr>
                 </Col>
               ))}
