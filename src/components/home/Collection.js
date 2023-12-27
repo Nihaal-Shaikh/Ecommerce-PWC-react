@@ -41,10 +41,10 @@ function Collection() {
                                         <Card.Body>
                                             <p className='product-name-on-card'>{CollectionList.title}</p>
                                             {!CollectionList.special_price ? (
-                                                <p className='product-price-on-card'>Price: ${CollectionList.price}</p>
+                                                <p className='product-price-on-card'>Price: ₹{CollectionList.price}</p>
                                             ) : (
                                                 <p className='product-price-on-card'>
-                                                    Price: <strike className='text-secondary'>${CollectionList.special_price}</strike> ${CollectionList.price}
+                                                    Price: <strike className='text-secondary'>₹{CollectionList.special_price}</strike> ₹{CollectionList.price}
                                                 </p>
                                             )}
                                         </Card.Body>

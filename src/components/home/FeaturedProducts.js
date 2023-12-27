@@ -41,10 +41,10 @@ function FeaturedProducts() {
                                         <Card.Body>
                                             <p className='product-name-on-card'>{FeaturedList.title}</p>
                                             {!FeaturedList.special_price ? (
-                                                <p className='product-price-on-card'>Price: ${FeaturedList.price}</p>
+                                                <p className='product-price-on-card'>Price: ₹{FeaturedList.price}</p>
                                             ) : (
                                                 <p className='product-price-on-card'>
-                                                    Price: <strike className='text-secondary'>${FeaturedList.special_price}</strike> ${FeaturedList.price}
+                                                    Price: <strike className='text-secondary'>₹{FeaturedList.special_price}</strike> ₹{FeaturedList.price}
                                                 </p>
                                             )}
                                         </Card.Body>

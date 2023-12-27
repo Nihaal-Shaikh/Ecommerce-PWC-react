@@ -99,10 +99,10 @@ function NewArrivals() {
                                             <Card.Body>
                                                 <p className='product-name-on-card'>{NewList.title}</p>
                                                 {!NewList.special_price ? (
-                                                    <p className='product-price-on-card'>Price: ${NewList.price}</p>
+                                                    <p className='product-price-on-card'>Price: ₹{NewList.price}</p>
                                                 ) : (
                                                     <p className='product-price-on-card'>
-                                                        Price: <strike className='text-secondary'>${NewList.special_price}</strike> ${NewList.price}
+                                                        Price: <strike className='text-secondary'>₹{NewList.special_price}</strike> ₹{NewList.price}
                                                     </p>
                                                 )}
                                             </Card.Body>

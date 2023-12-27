@@ -225,7 +225,7 @@ function ProductDetails(props) {
                                 <h5 className="Product-Name">{productData['productList'][0]['title']}</h5>
                                 <h6 className="section-sub-title">{productData['productDetails'][0]['short_description']}</h6>
                                 {!productData['productList'][0]['special_price'] ? (
-                                    <p className='product-price-on-card'>Price: ${productData['productList'][0]['price']}</p>
+                                    <p className='product-price-on-card'>Price: ₹{productData['productList'][0]['price']}</p>
                                 ) : (
                                     <p className='product-price-on-card'>
                                         Price: <strike className='text-secondary'>${productData['productList'][0]['price']}</strike> ${productData['productList'][0]['special_price']}

@@ -162,7 +162,7 @@ function Cart(props) {
                                             <h5 className="product-name">{CartList.product_name}</h5>
                                             <h6> Quantity = {CartList.quantity} </h6>
                                             <p>Size: {CartList.size} | Colour: {CartList.colour}</p>
-                                            <h6>Price = {CartList.quantity} x {CartList.unit_price} = ${CartList.total_price}</h6>
+                                            <h6>Price = {CartList.quantity} x {CartList.unit_price} = ₹{CartList.total_price}</h6>
                                             <p>Total price: </p>
                                         </Col>
                                         <Col md={3} lg={3} sm={12} xs={12}>
@@ -181,7 +181,7 @@ function Cart(props) {
                                 <Container fluid={true}>
                                     <Row>
                                         <Col md={12} lg={12} sm={12} xs={12} className="p-1">
-                                            <h5 className="Product-Name text-danger">Total Due: ${totalPrice}</h5>
+                                            <h5 className="Product-Name text-danger">Total Due: ₹{totalPrice}</h5>
                                         </Col>
                                     </Row>
                                     <Row>

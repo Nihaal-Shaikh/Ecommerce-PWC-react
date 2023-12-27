@@ -106,7 +106,7 @@ function OrderList(props) {
                   {(CartList.size !== 'undefined' && CartList.colour !== 'undefined') && (
                     <p>{CartList.size} | {CartList.colour}</p>
                   )}
-                  <h6>Price = {CartList.unit_price} x {CartList.quantity} = {CartList.total_price}$</h6>
+                  <h6>Price = {CartList.unit_price} x {CartList.quantity} = ₹{CartList.total_price}</h6>
                   <h6>Status = {CartList.order_status} </h6>
                   {(CartList.order_status === 'Complete') && (
                     <Button onClick={() => handleShow(CartList.product_name, CartList.product_code)} className="btn btn-danger">Post Review </Button>
