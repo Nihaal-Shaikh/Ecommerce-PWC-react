@@ -228,7 +228,7 @@ function ProductDetails(props) {
                                     <p className='product-price-on-card'>Price: ₹{productData['productList'][0]['price']}</p>
                                 ) : (
                                     <p className='product-price-on-card'>
-                                        Price: <strike className='text-secondary'>${productData['productList'][0]['price']}</strike> ${productData['productList'][0]['special_price']}
+                                        Price: <strike className='text-secondary'>₹{productData['productList'][0]['price']}</strike> ₹{productData['productList'][0]['special_price']}
                                     </p>
                                 )}
                                 <h6 className="mt-2">Category: <b>{category}</b></h6>

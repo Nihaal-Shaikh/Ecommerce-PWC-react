@@ -31,7 +31,7 @@ function SuggestedProducts(props) {
                     <Row>
                         {productData.map((productList, i) => (
                             <Col className="p-1" key={i} xl={2} lg={2} md={2} sm={4} xs={6}>
-                                <Link className="text-link" to={`/productdetails/₹{productList.id}`}>
+                                <Link className="text-link" to={`/productdetails/${productList.id}`}>
                                     <Card className="image-box card">
                                         <img className="center" src={productList.image} />
                                         <Card.Body>
